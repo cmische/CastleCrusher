@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="tmw_desert_spacing" tilewidth="32" tileheight="32" spacing="1" margin="1">
+  <image source="tmw_desert_spacing.png" width="265" height="199"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmUsSwzAIQ32S5P637LaTSRt/hCRwFqziwTzABpyjtXa80i3ng6jtQzKq/Krmv7PN2X5n3834NQNL77nPwIFcx7Spug3uHKhz2qMnOh4oDpbPnvQz8rcaS7Ru1zrda9N1zSiLQ04i/O8Wvx04MvdYLwd+j2wcqj4sU31Wnw1GbWbNWywOdd/Oiotr7/bLTlV+IPXuxBGZD6q9kQwZOGbfAkf4GPf66p3OmMEQ+bL6XuPSK6z4ZSYWozN/VC/zrXtmD/bbxfWfwXnzLTpP0HUty4zEkgoMlTj+8VXJuco8ajuyxsahv3LnYPiiUh7vIB+p5SW4
+  </data>
+ </layer>
+</map>
