@@ -5,6 +5,9 @@
 
 class HelloWorld : public cocos2d::Layer
 {
+	cocos2d::TMXTiledMap *_tileMap;
+	cocos2d::TMXLayer *_background;
+	cocos2d::Sprite *_player;
 public:
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::Scene* createScene();
@@ -13,11 +16,11 @@ public:
     virtual bool init();
 
     // implement the "static create()" method manually
-    CREATE_FUNC(HelloWorld);
 
-private:
-	cocos2d::TMXTiledMap *_tileMap;
-	cocos2d::TMXLayer *_background;
+	void setViewPointCenter(cocos2d::Point position);
+	void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event);
+	void setPlayerPosition(cocos2d::Point position);
+    CREATE_FUNC(HelloWorld);
 };
 
 #endif // __HELLOWORLD_SCENE_H__
