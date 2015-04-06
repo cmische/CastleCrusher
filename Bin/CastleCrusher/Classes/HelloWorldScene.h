@@ -18,7 +18,7 @@ public:
     // implement the "static create()" method manually
 
 	void setViewPointCenter(cocos2d::Point position);
-	void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event);
+	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
 	void setPlayerPosition(cocos2d::Point position);
     CREATE_FUNC(HelloWorld);
 };

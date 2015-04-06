@@ -40,43 +40,36 @@ void HelloWorld::setPlayerPosition(Point position)
     _player->setPosition(position);
 }
 
-void HelloWorld::onTouchEnded(Touch *touch, Event *unused_event)
+void HelloWorld::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
 	auto actionTo1 = RotateTo::create(0, 0, 180);
 	auto actionTo2 = RotateTo::create(0, 0, 0);
-	auto touchLocation = touch->getLocation();
-
-	touchLocation = this->convertToNodeSpace(touchLocation);
-
 	auto playerPos = _player->getPosition();
-	auto diff = touchLocation - playerPos;
-	if (abs(diff.x) > abs(diff.y)) {
-		if (diff.x > 0) {
-			playerPos.x += _tileMap->getTileSize().width / 2;
-			_player->runAction(actionTo2);
-		}
-		else {
-			playerPos.x -= _tileMap->getTileSize().width / 2;
-			_player->runAction(actionTo1);
-		}
+
+
+	if (keyCode == EventKeyboard::KeyCode::KEY_W) {
+		playerPos.y += _tileMap->getTileSize().height / 2;
 	}
-	else {
-	 if (diff.y > 0) {
-	    playerPos.y += _tileMap->getTileSize().height / 2;
-	 }
-		else {
-		 playerPos.y -= _tileMap->getTileSize().height / 2;
-		}
- }
+	if (keyCode == EventKeyboard::KeyCode::KEY_A) {
+		playerPos.x -= _tileMap->getTileSize().height / 2;
+		_player->runAction(actionTo1);
+	}
+	if (keyCode == EventKeyboard::KeyCode::KEY_S) {
+		playerPos.y -= _tileMap->getTileSize().height / 2;
+	}
+	if (keyCode == EventKeyboard::KeyCode::KEY_D) {
+		playerPos.x += _tileMap->getTileSize().height / 2;
+		_player->runAction(actionTo2);
+	}
 
 	if (playerPos.x <= (_tileMap->getMapSize().width * _tileMap->getMapSize().width) &&
 	 playerPos.y <= (_tileMap->getMapSize().height * _tileMap->getMapSize().height) &&
 	 playerPos.y >= 0 &&
-	 playerPos.x >= 0)
+	 playerPos.x >= 0) 
 	{
 	 this->setPlayerPosition(playerPos);
+	}
 
- }
 
 	this->setViewPointCenter(_player->getPosition());
 }
@@ -115,9 +108,8 @@ bool HelloWorld::init()
 	addChild(_player);
 	setViewPointCenter(_player->getPosition());
 
-	auto listener = EventListenerTouchOneByOne::create();
-	listener->onTouchBegan = [&](Touch *touch, Event *unused_event)->bool {return true;};
-	listener->onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);
+	auto listener = EventListenerKeyboard::create();
+	listener->onKeyPressed = CC_CALLBACK_2(HelloWorld::onKeyPressed, this);
 	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
     return true;
