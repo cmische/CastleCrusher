@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="26">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="29">
  <tileset firstgid="1" name="DungeonCrawl_ProjectUtumnoTileset" tilewidth="32" tileheight="32">
   <image source="DungeonCrawl_ProjectUtumnoTileset.png" trans="000000" width="2048" height="1536"/>
  </tileset>
@@ -13,7 +13,7 @@
    eJxjYKAuSGRmYHBhx6/mPjNxZj1gZkhIJFItsQBk3iUqmzcKMIEc20C7YBQQA0QZMcW8WOnvDlLBvdF8NygAAKTnBj0=
   </data>
  </layer>
- <objectgroup name="Collision" visible="0">
+ <objectgroup name="Collision">
   <object id="2" x="1" y="4" width="637" height="26"/>
   <object id="3" x="97" y="35" width="34" height="60"/>
   <object id="4" x="134" y="33" width="152" height="62"/>
@@ -38,5 +38,8 @@
   <object id="23" x="130" y="407" width="27" height="209"/>
   <object id="24" x="226" y="582" width="52" height="28"/>
   <object id="25" x="127" y="610" width="136" height="26"/>
+ </objectgroup>
+ <objectgroup name="SpawnPoint">
+  <object id="28" x="2" y="327" width="29" height="26"/>
  </objectgroup>
 </map>
