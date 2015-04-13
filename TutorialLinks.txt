@@ -1,7 +1,5 @@
 Some random links, might have duplicated a few
 
-https://docs.google.com/document/d/16c64hhDEQAoXz8AD8fZapxMHw58b0jEBasdkVwB9UAc/edit?usp=sharing
-
 http://www.cocos2d-x.org/wiki/TileMap
 
 http://discuss.cocos2d-x.org/t/c-auto-keyword/16536/3
