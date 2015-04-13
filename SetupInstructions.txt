@@ -1,0 +1,17 @@
+I've included the need installers in the repository, assuming the version hasn't changed it should be cocos2d-x 3.5 and cocos for windows on this page though.
+
+http://www.cocos2d-x.org/download\
+
+Once those are installed to default locations, you can create a project skeleton for a new game, I ve already created one and put it in the repo though.
+
+Create project skeleton:
+http://www.cocos2d-x.org/wiki/How_to_Start_A_New_Cocos2D-X_Game#For-Win32-Users
+ cocos.py new YourGameTitle -p com.yourcompany.gametitle -l cpp -d C:\YourGameTitle
+
+To get a copy of the latest game files, download github for windows
+
+https://windows.github.com/
+
+I have everyone but Mike Dahl as a member of our repo on github. I ve added the rest of your accounts to our repo as members. I believe the repository just appears when you log in? Text me if not, we'll figure it out. Then when you have a local copy of the repository, open it in visual studio and try running it.
+
+If you run into an error loading the project or an error loading from memory during debug, let me know, I've been through these two errors already and understand them.
