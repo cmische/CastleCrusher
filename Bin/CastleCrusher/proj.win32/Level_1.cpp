@@ -53,17 +53,17 @@ void Level_1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
     
     
     if (keyCode == EventKeyboard::KeyCode::KEY_W) {
-        playerPos.y += _tileMap->getTileSize().height / 2;
+        playerPos.y += _tileMap->getTileSize().height;
     }
     if (keyCode == EventKeyboard::KeyCode::KEY_A) {
-        playerPos.x -= _tileMap->getTileSize().height / 2;
+        playerPos.x -= _tileMap->getTileSize().height;
         _player->runAction(actionTo1);
     }
     if (keyCode == EventKeyboard::KeyCode::KEY_S) {
-        playerPos.y -= _tileMap->getTileSize().height / 2;
+        playerPos.y -= _tileMap->getTileSize().width;
     }
     if (keyCode == EventKeyboard::KeyCode::KEY_D) {
-        playerPos.x += _tileMap->getTileSize().height / 2;
+        playerPos.x += _tileMap->getTileSize().width;
         _player->runAction(actionTo2);
     }
     

@@ -18,10 +18,10 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+    <ClCompile Include="..\Classes\Level1.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Level_1.cpp">
+    <ClCompile Include="MainMenu.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,10 +32,10 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
+    <ClInclude Include="..\Classes\Level1.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Level_1.h">
+    <ClInclude Include="MainMenu.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

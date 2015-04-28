@@ -1,28 +1,18 @@
-﻿Build started 4/13/2015 3:33:17 AM.
+﻿Build started 4/28/2015 5:45:37 PM.
      1>Project "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\CastleCrusher.vcxproj" on node 2 (Build target(s)).
-     1>PreLinkEvent:
-         if not exist "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\" mkdir "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\"
-         xcopy /Y /Q "C:\Cocos\frameworks\cocos2d-x-3.5\prebuilt\win32\*.*" "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\"
-         xcopy "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\..\Resources" "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\" /D /E /I /F /Y
-         
-         :VCEnd
-         51 File(s) copied
-         C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\Resources\res\hit.caf -> C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\res\hit.caf
-         C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\Resources\res\meta_tiles.png -> C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\res\meta_tiles.png
-         C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\Resources\res\move.caf -> C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\res\move.caf
-         C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\Resources\res\pickup.caf -> C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\res\pickup.caf
-         C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\Resources\res\Player.png -> C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\res\Player.png
-         C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\Resources\res\SirBrawnlyTemp.png -> C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\res\SirBrawnlyTemp.png
-         C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\Resources\res\SlimeTemp.gif -> C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\res\SlimeTemp.gif
-         C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\Resources\res\TileMap.caf -> C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\res\TileMap.caf
-         C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\Resources\res\TileMap.tmx -> C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\res\TileMap.tmx
-         C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\Resources\res\tmw_desert_spacing.png -> C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\res\tmw_desert_spacing.png
-         C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\Resources\res\Zone 1 Level 1.mp3 -> C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\res\Zone 1 Level 1.mp3
-         11 File(s) copied
-       Link:
-         CastleCrusher.vcxproj -> C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.exe
-     1>Done Building Project "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\CastleCrusher.vcxproj" (Build target(s)).
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\audio\include" /I"C:\Cocos\frameworks\cocos2d-x-3.5\external" /I"C:\Cocos\frameworks\cocos2d-x-3.5\external\chipmunk\include\chipmunk" /I"C:\Cocos\frameworks\cocos2d-x-3.5\extensions" /I..\Classes /I.. /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\editor-support" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\platform" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\platform\desktop" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\external\glfw3\include\win32" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\external\win32-specific\gles\include\OGLES" /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _VARIADIC_MAX=10 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt MainMenu.cpp
+         MainMenu.cpp
+     1>c:\programdata\repositories\castlecrusher\bin\castlecrusher\proj.win32\mainmenu.cpp(46): error C2664: 'OutputDebugStringW' : cannot convert parameter 1 from 'std::basic_string<_Elem,_Traits,_Alloc>' to 'LPCWSTR'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>Done Building Project "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\CastleCrusher.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:01.12
+Time Elapsed 00:00:11.58
