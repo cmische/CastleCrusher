@@ -7,8 +7,8 @@ class MainMenu : public cocos2d::Layer
 {
 	// functions for click even handling
 	void onNewGame(cocos2d::Ref *sender);
-//	void onOptions(Object* pSender);
-	void onQuit(cocos2d::Ref *sender);
+	void onOptions(cocos2d::Ref *sender);
+	void onExit(cocos2d::Ref *sender);
 public:
 	// there’s no ‘id’ in cpp, so we recommand to return the exactly class pointer
 	static cocos2d::Scene* createScene();

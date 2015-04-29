@@ -30,31 +30,57 @@ bool MainMenu::init()
 	backgroundSprite->setPosition( Point( winSize.width / 2, winSize.height / 2));
 	this->addChild(backgroundSprite, -1);
 	// Main menu with 3 items
-	auto playItem = MenuItemImage::create("SirBrawnlyTemp.png","SirBrawnlyTemp.png", CC_CALLBACK_1(MainMenu::onNewGame, this));
-	//MenuItemFont* item2 = MenuItemFont::create( "Options", this, menu_selector(MainMenu::onOptions) );
-	auto exitItem = MenuItemImage::create("playbutton.png","playbutton.png", CC_CALLBACK_1(MainMenu::onQuit, this));
-	// combine to form a menu and allign Vertically
-	playItem->setPosition( Point(winSize.width / 2, (winSize.height / 2) + 100));
-	exitItem->setPosition( Point(winSize.width / 2, (winSize.height / 2) - 100));
-	auto menu = Menu::create( playItem, exitItem, NULL );
-	menu->setPosition( Point( winSize.width / 2, winSize.height / 2));
+	int buttonheight = winSize.height / 10;
+	auto newGameItem = MenuItemImage::create("newGame.png","newGameSelected.png", CC_CALLBACK_1(MainMenu::onNewGame, this));
+	auto optionsItem = MenuItemImage::create("options.png","optionsSelected.png", CC_CALLBACK_1(MainMenu::onOptions, this));
+	auto exitItem = MenuItemImage::create("exit.png","exitSelected.png", CC_CALLBACK_1(MainMenu::onExit, this));
+	newGameItem->setPosition( winSize.width / 2, buttonheight);
+	optionsItem->setPosition( winSize.width / 10, buttonheight );
+	exitItem->setPosition( winSize.width * 0.9, buttonheight);
+	auto menu = Menu::create( newGameItem, optionsItem, exitItem, NULL );
+	menu->setPosition( 0, 0);
 	//menu->alignItemsVertically();
 	// add this to the layer
 	this->addChild( menu);
+
+
+	/* display floats on debug console for adjusting
 	std::ostringstream ss;
-	ss << winSize.width;
-	OutputDebugString(ss.str());
+	std::string s;
+	std::wstring stemp;
+	
+	s = "Debugging info \n";
+	stemp = std::wstring(s.begin(), s.end());
+	OutputDebugString(stemp.c_str());
+
+	ss << winSize.width / 2;
+	s = "window width is: " + ss.str() + "\n";
+	stemp = std::wstring(s.begin(), s.end());
+	OutputDebugString(stemp.c_str());
+	ss.str("");
+
+	ss << winSize.height / 2;
+	s = "window height is: " + ss.str() + "\n";
+	stemp = std::wstring(s.begin(), s.end());
+	OutputDebugString(stemp.c_str());
+	ss.str("");
+	*/
+
 	return true;
 }
 
 void MainMenu::onNewGame(cocos2d::Ref *sender)
 {
 	auto scene = Level1::createScene();
-	//Director::getInstance()->replaceScene(TransitionFade::create(2, scene ));
-	Director::getInstance()->replaceScene(scene);
+	Director::getInstance()->replaceScene(TransitionFade::create(2, scene ));
 }
 
-void MainMenu::onQuit(cocos2d::Ref *sender)
+void MainMenu::onOptions(cocos2d::Ref *sender)
+{
+	Director::getInstance()->end();
+}
+
+void MainMenu::onExit(cocos2d::Ref *sender)
 {
 	Director::getInstance()->end();
 }
