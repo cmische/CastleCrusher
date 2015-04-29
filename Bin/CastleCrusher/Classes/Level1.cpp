@@ -38,17 +38,17 @@ void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 	auto actionTo1 = RotateTo::create(0, 0, 180);
 	auto actionTo2 = RotateTo::create(0, 0, 0);
 	auto playerPos = _player->getPosition();
-	if (keyCode == EventKeyboard::KeyCode::KEY_W) {
+	if (keyCode == EventKeyboard::KeyCode::KEY_W || keyCode == EventKeyboard::KeyCode::KEY_UP_ARROW) {
 		playerPos.y += _tileMap->getTileSize().height;
 	}
-	if (keyCode == EventKeyboard::KeyCode::KEY_A) {
+	if (keyCode == EventKeyboard::KeyCode::KEY_A || keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW) {
 		playerPos.x -= _tileMap->getTileSize().width;
 		_player->runAction(actionTo1);
 	}
-	if (keyCode == EventKeyboard::KeyCode::KEY_S) {
+	if (keyCode == EventKeyboard::KeyCode::KEY_S || keyCode == EventKeyboard::KeyCode::KEY_DOWN_ARROW) {
 		playerPos.y -= _tileMap->getTileSize().height;
 	}
-	if (keyCode == EventKeyboard::KeyCode::KEY_D) {
+	if (keyCode == EventKeyboard::KeyCode::KEY_D || keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW) {
 		playerPos.x += _tileMap->getTileSize().width;
 		_player->runAction(actionTo2);
 	}
@@ -92,9 +92,9 @@ bool Level1::init()
 	CCASSERT(!playerShowUpPoint.empty(), "PlayerShowUpPoint object not found");
 	int x = playerShowUpPoint["x"].asInt();
 	int y = playerShowUpPoint["y"].asInt();
-	_player = Sprite::create("SirBrawnlyTemp.png");
+	_player = Sprite::create("SirBrawnley.png");
 	_player->setPosition(x + _tileMap->getTileSize().width / 2, y + _tileMap->getTileSize().height / 2);
-	_player->setScale(0.5);
+	_player->setScale(0.05);
 	addChild(_player);
 	setViewPointCenter(_player->getPosition());
 	auto listener = EventListenerKeyboard::create();
