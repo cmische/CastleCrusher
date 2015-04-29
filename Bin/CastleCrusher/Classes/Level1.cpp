@@ -52,8 +52,8 @@ void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 		playerPos.x += _tileMap->getTileSize().width;
 		_player->runAction(actionTo2);
 	}
-	if (playerPos.x <= (_tileMap->getMapSize().width * _tileMap->getMapSize().width) &&
-	 playerPos.y <= (_tileMap->getMapSize().height * _tileMap->getMapSize().height) &&
+	if (playerPos.x <= (_tileMap->getMapSize().width * _tileMap->getTileSize().width) &&
+	 playerPos.y <= (_tileMap->getMapSize().height * _tileMap->getTileSize().height) &&
 	 playerPos.y >= 0 &&
 	 playerPos.x >= 0) 
 	{
