@@ -1,3 +1,4 @@
+//This ifndef, define, and endif stuff just protects header files from being defined more than once or recursively. That causes problems.
 #ifndef __Level1_SCENE_H__
 #define __Level1_SCENE_H__
 
@@ -32,7 +33,7 @@ class Level1 : public cocos2d::Layer
 	float _playerPosY;
 
 	//declare our functions
-	void setViewPointCenter(cocos2d::Point position);
+	void setViewPoint(cocos2d::Point position);
 	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
 	void startUI();
 	void setPlayerPosition(cocos2d::Point position);

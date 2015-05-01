@@ -2,11 +2,10 @@
 
 USING_NS_CC;
 
-//gonna comment up this file more in a bit
+//declare some private variables for camFollowMethod so it doesn't have to create new ones 60 times a second
+int camX, camY;
+float camAdjustSpeed = (float)0.15;
 
-int camX;
-int camY;
-float camAdjustSpeed = 0.05;
 
 Scene* Level1::createScene()
 {
@@ -16,66 +15,66 @@ Scene* Level1::createScene()
     return scene;
 }
 
-void Level1::setViewPointCenter(Point position) {
-    auto winSize = Director::getInstance()->getWinSize();
+void Level1::setViewPoint(Point position) {
+	//winSize has to be in this function for some reason or the camera messes up, no idea why.
+	auto winSize = Director::getInstance()->getWinSize();
+	//make sure the camera center never updates with a center less than half the width of the window
     int x = MAX(position.x, winSize.width / 2);
+	//make sure the camera center never updates with a center less than half the height of the window
     int y = MAX(position.y, winSize.height / 2);
+	//make sure the camera center never updates past map width minus half the width of the window
     x = MIN(x, (_tileMap->getMapSize().width * this->_tileMap->getTileSize().width) - winSize.width / 2);
+	//make sure the camera center never updates past map height minus half the height of the window
     y = MIN(y, (_tileMap->getMapSize().height * _tileMap->getTileSize().height) - winSize.height / 2);
     auto actualPosition = Point(x, y);
     auto centerOfView = Point(winSize.width / 2, winSize.height / 2);
     auto viewPoint = centerOfView - actualPosition;
+	//get the difference from center of camera to where you want to go and go there
     this->setPosition(viewPoint);
 }
 
 void Level1::camFollowPlayer(float dt)
 {
 	//set it up this way so if _playerPosX == camX, nothing happens
-	if (_playerPosX > camX) { 
-		camX += (camAdjustSpeed * (_playerPosX - camX));
-	} else { 
-		if (_playerPosX < camX) {
-			camX -= (camAdjustSpeed * (camX - _playerPosX));
-		}
-	}
-	if (_playerPosY > camY) { 
-		camY += (camAdjustSpeed * (_playerPosY - camY));
-	} else { 
-		if (_playerPosX < camX) {
-			camY -= (camAdjustSpeed * (camY - _playerPosY));
-		}
-	}
-	this->setViewPointCenter(Point(camX, camY));
+	camX += (camAdjustSpeed * (_playerPosX - camX));
+	camY += (camAdjustSpeed * (_playerPosY - camY));
+	this->setViewPoint(Point(camX, camY));
 }
 
 void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
+	//makes the player do a rotate when he changes directions
 	auto actionTo1 = RotateTo::create(0, 0, 180);
 	auto actionTo2 = RotateTo::create(0, 0, 0);
+	//supports wasd or arrow keys, update player position if within map bounds
 	if (keyCode == EventKeyboard::KeyCode::KEY_W || keyCode == EventKeyboard::KeyCode::KEY_UP_ARROW) {
-		_playerPosY += _tileMap->getTileSize().height;
+		if ( _playerPosY + _tileMap->getTileSize().height <= _tileMap->getMapSize().height * _tileMap->getTileSize().height){
+			_playerPosY += _tileMap->getTileSize().height;
+		}
 	}
 	if (keyCode == EventKeyboard::KeyCode::KEY_A || keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW) {
-		_playerPosX -= _tileMap->getTileSize().width;
-		_player->runAction(actionTo1);
+		if (_playerPosX - _tileMap->getTileSize().width >= 0) {
+			_playerPosX -= _tileMap->getTileSize().width;
+			_player->runAction(actionTo1);
+		}
 	}
 	if (keyCode == EventKeyboard::KeyCode::KEY_S || keyCode == EventKeyboard::KeyCode::KEY_DOWN_ARROW) {
+		if (_playerPosY - _tileMap->getTileSize().height >= 0) {
 		_playerPosY -= _tileMap->getTileSize().height;
+		}
 	}
 	if (keyCode == EventKeyboard::KeyCode::KEY_D || keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW) {
-		_playerPosX += _tileMap->getTileSize().width;
-		_player->runAction(actionTo2);
+		if ( _playerPosX + _tileMap->getTileSize().width <= _tileMap->getMapSize().width * _tileMap->getTileSize().width) {
+			_playerPosX += _tileMap->getTileSize().width;
+			_player->runAction(actionTo2);
+		}
 	}
-	if (_playerPosX <= (_tileMap->getMapSize().width * _tileMap->getTileSize().width) &&
-	 _playerPosY <= (_tileMap->getMapSize().height * _tileMap->getTileSize().height) &&
-	 _playerPosY >= 0 &&
-	 _playerPosX >= 0) 
-	{
 	 _player->setPosition(_playerPosX, _playerPosY);
-	}
 }
 
+
 void Level1::startUI(){
+	/*
 	int x = 32;
 	int y = 32;
 	auto moveTo = MoveTo::create(15, Vec2(1000, 0));
@@ -84,7 +83,9 @@ void Level1::startUI(){
 	_bar->setPosition(x + _tileMap->getTileSize().width / 2, y + _tileMap->getTileSize().height / 2);
 	_bar->runAction(moveTo);
 	addChild(_bar);
+	*/
 }
+
 
 bool Level1::init()
 {
@@ -96,61 +97,39 @@ bool Level1::init()
     }
 	this->_tileMap = TMXTiledMap::create("TileMap.tmx");
 	this->_background = _tileMap->getLayer("Background");
+	//add tile map as a background
 	addChild(_tileMap, -1);
+
+	//gets spawn location from the object layer of the tilemap
 	TMXObjectGroup *objects = _tileMap->getObjectGroup("Objects");
-	CCASSERT(NULL != objects, "'Objects' object group not found");
 	auto playerShowUpPoint = objects->getObject("SpawnPoint");
-	CCASSERT(!playerShowUpPoint.empty(), "PlayerShowUpPoint object not found");
 	int x = playerShowUpPoint["x"].asInt();
 	int y = playerShowUpPoint["y"].asInt();
+
 	_player = Sprite::create("SirBrawnley.png");
+	//put player positions on spawnpoint
 	_playerPosX = (float)(x + _tileMap->getTileSize().width / 2);
 	_playerPosY = (float)(y + _tileMap->getTileSize().height / 2);
 	_player->setPosition(_playerPosX, _playerPosY);
-	_player->setScale((float)0.04);
+	//make our player image the right size
+	_player->setScale((float)0.037);
 	addChild(_player);
-	setViewPointCenter(_player->getPosition());
+
+	//makes the camera start on the spawn instead of panning to it
+	camX = _playerPosX;
+	camY = _playerPosY;
+	setViewPoint(_player->getPosition());
+
+	//adds listener for any keyboard event, calls onKeyPressed with the event and passes key
 	auto listener = EventListenerKeyboard::create();
 	listener->onKeyPressed = CC_CALLBACK_2(Level1::onKeyPressed, this);
 	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	
 	startUI();
-	//working on camera system so it updates with every frame and follows the player rather than jolting onto him.
+	//this method runs camFollowPlayer on every frame update
 	this->schedule(schedule_selector(Level1::camFollowPlayer));
 
-	camX = _playerPosX;
-	camY = _playerPosY;
 
-	std::ostringstream ss;
-	std::string s;
-	std::wstring stemp;
-	
-	s = "Debugging info \n";
-	stemp = std::wstring(s.begin(), s.end());
-	OutputDebugString(stemp.c_str());
-
-	ss << camX;
-	s = "camX is: " + ss.str() + "\n";
-	stemp = std::wstring(s.begin(), s.end());
-	OutputDebugString(stemp.c_str());
-	ss.str("");
-
-	ss << camY;
-	s = "camY is: " + ss.str() + "\n";
-	stemp = std::wstring(s.begin(), s.end());
-	OutputDebugString(stemp.c_str());
-	ss.str("");
-
-	ss << _playerPosX;
-	s = "playerPosX is: " + ss.str() + "\n";
-	stemp = std::wstring(s.begin(), s.end());
-	OutputDebugString(stemp.c_str());
-	ss.str("");
-
-	ss << _playerPosY;
-	s = "playerPosY is: " + ss.str() + "\n";
-	stemp = std::wstring(s.begin(), s.end());
-	OutputDebugString(stemp.c_str());
-	ss.str("");
 
     return true;
 }
