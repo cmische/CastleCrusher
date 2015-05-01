@@ -28,7 +28,8 @@ class Level1 : public cocos2d::Layer
 	cocos2d::TMXLayer *_background;
 	cocos2d::Sprite *_player;
 	cocos2d::Sprite *_bar;
-	cocos2d::Point _playerPos;
+	float _playerPosX;
+	float _playerPosY;
 
 	//declare our functions
 	void setViewPointCenter(cocos2d::Point position);

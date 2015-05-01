@@ -77,7 +77,8 @@ void MainMenu::onNewGame(cocos2d::Ref *sender)
 {
 	//runs when new game is selected on main menu
 	auto scene = Level1::createScene();
-	Director::getInstance()->replaceScene(TransitionFade::create(2, scene ));
+	//Director::getInstance()->replaceScene(TransitionFade::create(2, scene ));
+	Director::getInstance()->replaceScene(scene);
 }
 
 void MainMenu::onOptions(cocos2d::Ref *sender)
