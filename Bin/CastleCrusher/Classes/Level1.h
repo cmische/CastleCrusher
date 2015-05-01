@@ -26,7 +26,7 @@ class Level1 : public cocos2d::Layer
 	if it doesn't, you use a . operator */
 
 	cocos2d::TMXTiledMap *_tileMap;
-	cocos2d::TMXLayer *_background;
+	cocos2d::TMXLayer *_collide;
 	cocos2d::Sprite *_player;
 	cocos2d::Sprite *_bar;
 	float _playerPosX;
@@ -38,6 +38,8 @@ class Level1 : public cocos2d::Layer
 	void startUI();
 	void setPlayerPosition(cocos2d::Point position);
 	void camFollowPlayer(float dt);
+	//void tileCoordForPosition(Point position);
+	//void setPlayerPosition(Point position);
 
 public:
 

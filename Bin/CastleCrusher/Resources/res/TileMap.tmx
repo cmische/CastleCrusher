@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" nextobjectid="4">
- <tileset firstgid="1" name="tmw_desert_spacing" tilewidth="32" tileheight="32" spacing="1" margin="1">
-  <image source="tmw_desert_spacing.png" width="265" height="199"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" nextobjectid="3">
+ <tileset firstgid="1" name="Level1" tilewidth="1" tileheight="1"/>
+ <tileset firstgid="1" name="DungeonCrawl_ProjectUtumnoTileset" tilewidth="32" tileheight="32">
+  <image source="DungeonCrawl_ProjectUtumnoTileset.png" width="2048" height="1536"/>
+ </tileset>
+ <tileset firstgid="3073" name="hcJ9k" tilewidth="32" tileheight="32">
+  <image source="hcJ9k.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="3329" name="meta_tiles" tilewidth="32" tileheight="32" spacing="1" margin="1">
+  <image source="meta_tiles.png" width="67" height="34"/>
+  <tile id="0">
+   <properties>
+    <property name="Collidable" value="True"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="Background" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <objectgroup name="Objects">
-  <object id="3" name="SpawnPoint" x="898" y="705" width="27" height="24"/>
+ <layer name="Tile Layer 2" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztlz1OAlEYRWcBbMK4A5dAZUJnhdKjYI8mBKXDBFE7G1E7GnsaK39iY6WyAX42ANpziiF5mWQemXnjzGjuSU7yijff9+501/PsfBQ87xO/cFRYcznFWVEZs2+CU5zhloPBWWkyZ98Cv/EHiw4GZ6VJ1X/DKbYdc7TwxD/vZ5xjx8EeXmSc4xKvHHdnmaPh/8s7vHfc3ef7W3/eUco5Nn5p36ZyxEI57ChHPJTDjnLE44l9z/iCr467k5wVlf/aP/IyKyrBzuDSo7LsH2ZnCLODZ7iLe9jFc8v9VQfIW45r3MYa1rGEN38wxwDLxrsqnB9ylsPsPmEO8cB41yHnR8v9JDpZVMzuE+YbHhvvanJ+t9xPopMJIYQQQgghhBBCCCFEXJb4j4mP
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1csNgkAUhWEKmPZogMSdO7asUBtQaIBHA6j1aAdagmdhAgtiHOcm8vi/5GQWkHu4CclEEdZk6/79BTayhewBAMCc5bqPd8peOQTezZazfB3Vd1IKpQzstpzlq1JfrTRKG9htOctXp76zclGugd2Ws7BM8Uz/i5sbP9MP+wyf3Sey98ONn996vt/fTGSfXySuDwAAAAAAAADAxgtYjCCl
+  </data>
+ </layer>
+ <layer name="Tile Layer 4" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztz8EJgDAURMFfQAoxpgE1/ffl1hAEEWfg3XerAACAJ2ytqqc9jfb2mnVHtp/pSvPDPwAAAAAAAPifG4LMAe0=
+  </data>
+ </layer>
+ <objectgroup name="spawnlayer">
+  <object id="1" name="spawn" x="616" y="1068" width="43" height="36"/>
  </objectgroup>
+ <layer name="collide" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztljEKgDAQBOMD/P93LSyUNO4tGw9lBtIE3GGKgGOcbPt1Okj56chAh7Zzv0+fzo6Ugw7dMd+vgI7nXTo8n+J3dunwfIrf2aXD8yl+Z5cOz6f4nV06PJ/id3bp8HyK39n9+3+7eqrf0FHveAs61ux0+yvvIPU+lHfT0ZLYSdHZAQAAAAAAAADf5gBicBRZ
+  </data>
+ </layer>
 </map>

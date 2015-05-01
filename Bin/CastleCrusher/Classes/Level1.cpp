@@ -86,6 +86,31 @@ void Level1::startUI(){
 	*/
 }
 
+/*
+Point Level1::tileCoordForPosition(Point position)
+{
+    int x = position.x / _tileMap->getTileSize().width;
+    int y = ((_tileMap->getMapSize().height * _tileMap->getTileSize().height) - position.y) / _tileMap->getTileSize().height;
+    return ccp(x, y);
+}
+
+void Level1::setPlayerPosition(Point position) 
+{
+    Point tileCoord = this->tileCoordForPosition(position);
+    int tileGid = _meta->tileGIDAt(tileCoord);
+    if (tileGid) {
+        Dictionary *properties = _tileMap->propertiesForGID(tileGid);
+        if (properties) {
+            String *collision = new String();
+            *collision = *properties->valueForKey("Collidable");
+            if (collision && (collision->compare("True") == 0)) {
+                return;
+            }
+        }
+    }
+    _player->setPosition(position);
+}
+*/
 
 bool Level1::init()
 {
@@ -96,13 +121,14 @@ bool Level1::init()
         return false;
     }
 	this->_tileMap = TMXTiledMap::create("TileMap.tmx");
-	this->_background = _tileMap->getLayer("Background");
+	this->_collide = _tileMap->getLayer("collide");
+	_collide->setVisible(false);
 	//add tile map as a background
 	addChild(_tileMap, -1);
 
 	//gets spawn location from the object layer of the tilemap
-	TMXObjectGroup *objects = _tileMap->getObjectGroup("Objects");
-	auto playerShowUpPoint = objects->getObject("SpawnPoint");
+	TMXObjectGroup *objects = _tileMap->getObjectGroup("spawnlayer");
+	auto playerShowUpPoint = objects->getObject("spawn");
 	int x = playerShowUpPoint["x"].asInt();
 	int y = playerShowUpPoint["y"].asInt();
 
