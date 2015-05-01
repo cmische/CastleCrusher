@@ -3,6 +3,7 @@
 #define __Level1_SCENE_H__
 
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
 
 class Level1 : public cocos2d::Layer
 {
@@ -30,6 +31,7 @@ class Level1 : public cocos2d::Layer
 	cocos2d::Sprite *_player;
 	cocos2d::Sprite *_snake;
 	cocos2d::Sprite *_bar;
+	cocos2d::Sprite *_ogre;
 	float _playerPosX;
 	float _playerPosY;
 	float _snakePosX;
@@ -37,6 +39,11 @@ class Level1 : public cocos2d::Layer
 	float _snakeBasePosX;
 	float _snakeBasePosY;
 	int _snakePosIndex;
+	float _ogrePosX;
+	float _ogrePosY;
+	float _ogreBasePosX;
+	float _ogreBasePosY;
+	int _ogrePosIndex;
 
 	//declare our functions
 	void setViewPoint(cocos2d::Point position);

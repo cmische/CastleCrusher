@@ -47,16 +47,20 @@ void Level1::camFollowPlayer(float dt)
 //move the snake through a square around the base position
 void Level1::enemyAI(float dt)
 {
+	auto actionTo1 = RotateTo::create(0, 0, 180);
+	auto actionTo2 = RotateTo::create(0, 0, 0);
 	switch (_snakePosIndex)
 	{
 	case 1: _snakePosX += _tileMap->getTileSize().width; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
 	case 2: _snakePosY += _tileMap->getTileSize().height; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
-	case 3: _snakePosY += _tileMap->getTileSize().height; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
+	case 3: _snakePosY += _tileMap->getTileSize().height; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY);
+		_snake->runAction(actionTo1); break;
 	case 4: _snakePosX -= _tileMap->getTileSize().width; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
 	case 5: _snakePosX -= _tileMap->getTileSize().width; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
 	case 6: _snakePosY -= _tileMap->getTileSize().height; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
-	case 7: _snakePosY -= _tileMap->getTileSize().height; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
-	case 8: _snakePosX += _tileMap->getTileSize().width; _snakePosIndex = 1; _snake->setPosition(_snakePosX, _snakePosY); break;
+	case 7: _snakePosY -= _tileMap->getTileSize().height; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); _snake->runAction(actionTo2); break;
+	case 8: _snakePosX += _tileMap->getTileSize().width; _snakePosIndex = 1; _snake->setPosition(_snakePosX, _snakePosY); 
+		_snake->runAction(actionTo2); break;
 	default: printf("invalid snake index"); break;
 	}
 }
@@ -144,6 +148,8 @@ bool Level1::init()
 	_tileMap->getLayer("Tile Layer 2")->setGlobalZOrder(0);
 	_tileMap->getLayer("Tile Layer 3")->setGlobalZOrder(0);
 	_tileMap->getLayer("Tile Layer 4")->setGlobalZOrder(0);
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
+		"what is love.mp3", true);
 	
 
 
@@ -171,6 +177,19 @@ bool Level1::init()
 	_player->setGlobalZOrder(-1);
 	addChild(_player);
 
+
+	//initializes the ogre enemy
+	_ogre = Sprite::create("Ogre.png");
+	//put ogre positions and spawnpoint
+	_ogrePosX = (float)(_ogreBasePosX + _tileMap->getTileSize().width / 4);
+	_ogrePosY = (float)(_ogreBasePosY + (_tileMap->getTileSize().height / 2) - _tileMap->getTileSize().height);
+	_ogre->setPosition(_ogrePosX, _ogrePosY);
+	_ogrePosIndex = 1;	
+	//make our snake image the right size
+	_ogre->setScale((float)0.032);
+	_ogre->setGlobalZOrder(-1);
+	addChild(_ogre);
+
 	//initializes the snake enemy
 	_snake = Sprite::create("Snake.png");
 	//put snake positions on spawnpoint
@@ -178,6 +197,7 @@ bool Level1::init()
 	_snakePosY = (float)(_snakeBasePosY + (_tileMap->getTileSize().height / 2) - _tileMap->getTileSize().height);
 	_snake->setPosition(_snakePosX, _snakePosY);
 	_snakePosIndex = 1;
+	
 	//make our snake image the right size
 	_snake->setScale((float)0.032);
 	_snake->setGlobalZOrder(-1);
