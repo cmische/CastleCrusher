@@ -33,22 +33,29 @@ void Level1::setViewPoint(Point position) {
     this->setPosition(viewPoint);
 }
 
+//note, float dt parameter is required here due to the way the schedule method that calls this function works
 void Level1::camFollowPlayer(float dt)
 {
+	//This method is called with every frame update, it simply moves the camera 15% closer to the distance between where it is and the player with every frame
 	//set it up this way so if _playerPosX == camX, nothing happens
 	camX += (camAdjustSpeed * (_playerPosX - camX));
 	camY += (camAdjustSpeed * (_playerPosY - camY));
+	//Move the camera to the new position
 	this->setViewPoint(Point(camX, camY));
 }
 
 void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
+	int x = _playerPosX;
+	int y = _playerPosY;
+
 	//makes the player do a rotate when he changes directions
 	auto actionTo1 = RotateTo::create(0, 0, 180);
 	auto actionTo2 = RotateTo::create(0, 0, 0);
 	//supports wasd or arrow keys, update player position if within map bounds
 	if (keyCode == EventKeyboard::KeyCode::KEY_W || keyCode == EventKeyboard::KeyCode::KEY_UP_ARROW) {
 		if ( _playerPosY + _tileMap->getTileSize().height <= _tileMap->getMapSize().height * _tileMap->getTileSize().height){
+			//if new position is within map bounds, change it to the new position
 			_playerPosY += _tileMap->getTileSize().height;
 		}
 	}
@@ -69,6 +76,17 @@ void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 			_player->runAction(actionTo2);
 		}
 	}
+	//collide layer on tileMap has a transparent red tile, this checks to see if a players position will be on a red tile
+	Value properties = _tileMap->getPropertiesForGID(_collide->tileGIDAt(tileCoordForPosition(Point(_playerPosX, _playerPosY))));
+	if(! properties.isNull()) {
+		ValueMap dict = properties.asValueMap();
+		if (dict.at("collide").asString().compare("true") == 0) {
+			//if so, revert new position to same position it had when it started, nullifying any movement
+			_playerPosX = x;
+			_playerPosY = y;
+		}
+	}
+	//actually move the player
 	 _player->setPosition(_playerPosX, _playerPosY);
 }
 
@@ -86,31 +104,13 @@ void Level1::startUI(){
 	*/
 }
 
-/*
+
 Point Level1::tileCoordForPosition(Point position)
 {
     int x = position.x / _tileMap->getTileSize().width;
     int y = ((_tileMap->getMapSize().height * _tileMap->getTileSize().height) - position.y) / _tileMap->getTileSize().height;
     return ccp(x, y);
 }
-
-void Level1::setPlayerPosition(Point position) 
-{
-    Point tileCoord = this->tileCoordForPosition(position);
-    int tileGid = _meta->tileGIDAt(tileCoord);
-    if (tileGid) {
-        Dictionary *properties = _tileMap->propertiesForGID(tileGid);
-        if (properties) {
-            String *collision = new String();
-            *collision = *properties->valueForKey("Collidable");
-            if (collision && (collision->compare("True") == 0)) {
-                return;
-            }
-        }
-    }
-    _player->setPosition(position);
-}
-*/
 
 bool Level1::init()
 {
@@ -120,11 +120,18 @@ bool Level1::init()
     {
         return false;
     }
-	this->_tileMap = TMXTiledMap::create("TileMap.tmx");
-	this->_collide = _tileMap->getLayer("collide");
+	_tileMap = TMXTiledMap::create("tileMap.tmx");
+	_collide = _tileMap->getLayer("collide");
 	_collide->setVisible(false);
+	_tileMap->getLayer("Background")->setGlobalZOrder(-2);
+	_tileMap->getLayer("Tile Layer 2")->setGlobalZOrder(0);
+	_tileMap->getLayer("Tile Layer 3")->setGlobalZOrder(0);
+	_tileMap->getLayer("Tile Layer 4")->setGlobalZOrder(0);
+	
+
+
 	//add tile map as a background
-	addChild(_tileMap, -1);
+	addChild(_tileMap);
 
 	//gets spawn location from the object layer of the tilemap
 	TMXObjectGroup *objects = _tileMap->getObjectGroup("spawnlayer");
@@ -138,7 +145,8 @@ bool Level1::init()
 	_playerPosY = (float)(y + _tileMap->getTileSize().height / 2);
 	_player->setPosition(_playerPosX, _playerPosY);
 	//make our player image the right size
-	_player->setScale((float)0.037);
+	_player->setScale((float)0.032);
+	_player->setGlobalZOrder(-1);
 	addChild(_player);
 
 	//makes the camera start on the spawn instead of panning to it
@@ -149,13 +157,31 @@ bool Level1::init()
 	//adds listener for any keyboard event, calls onKeyPressed with the event and passes key
 	auto listener = EventListenerKeyboard::create();
 	listener->onKeyPressed = CC_CALLBACK_2(Level1::onKeyPressed, this);
-	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	
 	startUI();
 	//this method runs camFollowPlayer on every frame update
-	this->schedule(schedule_selector(Level1::camFollowPlayer));
-
-
+	schedule(schedule_selector(Level1::camFollowPlayer));
 
     return true;
 }
+
+/* Going to need this snippet for item pickup
+	 if (tileGid) {
+        ValueMap properties = _tilemap->getPropertiesForGID(tileGid).asValueMap();
+        if (properties.size() > 0) {
+            const String collision = properties.at("Collidable").asString();
+            if (collision.boolValue() && collision.compare("true") == 0) {
+                return;
+            }
+
+           const String collectable = properties.at("Collectable").asString();
+            if (collectable.boolValue() && collectable.compare("true") == 0) {
+                meta->removeTileAt(tileCoord);
+                foreground->removeTileAt(tileCoord);
+                numCollected++;
+                hud->numCollectedChanged(_numCollected);
+            }
+        }
+    }
+*/

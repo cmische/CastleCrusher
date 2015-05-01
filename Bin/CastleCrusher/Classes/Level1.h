@@ -38,8 +38,7 @@ class Level1 : public cocos2d::Layer
 	void startUI();
 	void setPlayerPosition(cocos2d::Point position);
 	void camFollowPlayer(float dt);
-	//void tileCoordForPosition(Point position);
-	//void setPlayerPosition(Point position);
+	cocos2d::Point tileCoordForPosition(cocos2d::Point position);
 
 public:
 

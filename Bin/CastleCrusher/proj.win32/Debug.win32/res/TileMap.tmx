@@ -11,7 +11,7 @@
   <image source="meta_tiles.png" width="67" height="34"/>
   <tile id="0">
    <properties>
-    <property name="Collidable" value="True"/>
+    <property name="collide" value="true"/>
    </properties>
   </tile>
  </tileset>
@@ -36,7 +36,7 @@
   </data>
  </layer>
  <objectgroup name="spawnlayer">
-  <object id="1" name="spawn" x="616" y="1068" width="43" height="36"/>
+  <object id="1" name="spawn" x="608.055" y="1088.01" width="31.9565" height="32.0435"/>
  </objectgroup>
  <layer name="collide" width="50" height="50">
   <data encoding="base64" compression="zlib">
