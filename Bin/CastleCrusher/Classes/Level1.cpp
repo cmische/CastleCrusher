@@ -2,17 +2,13 @@
 
 USING_NS_CC;
 
-//using namespace cocostudio::timeline;
+//gonna comment up this file more in a bit
 
 Scene* Level1::createScene()
 {
-    // 'scene' is an autorelease object
     auto scene = Scene::create();   
-    // 'layer' is an autorelease object
     auto layer = Level1::create();
-    // add layer as a child to scene
     scene->addChild(layer);
-    // return the scene
     return scene;
 }
 
@@ -28,38 +24,36 @@ void Level1::setViewPointCenter(Point position) {
     this->setPosition(viewPoint);
 }
 
-void Level1::setPlayerPosition(Point position)
+void Level1::camFollowPlayer(float dt)
 {
-    _player->setPosition(position);
+		this->setPosition(_playerPos);
 }
 
 void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
 	auto actionTo1 = RotateTo::create(0, 0, 180);
 	auto actionTo2 = RotateTo::create(0, 0, 0);
-	auto playerPos = _player->getPosition();
 	if (keyCode == EventKeyboard::KeyCode::KEY_W || keyCode == EventKeyboard::KeyCode::KEY_UP_ARROW) {
-		playerPos.y += _tileMap->getTileSize().height;
+		_playerPos.y += _tileMap->getTileSize().height;
 	}
 	if (keyCode == EventKeyboard::KeyCode::KEY_A || keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW) {
-		playerPos.x -= _tileMap->getTileSize().width;
+		_playerPos.x -= _tileMap->getTileSize().width;
 		_player->runAction(actionTo1);
 	}
 	if (keyCode == EventKeyboard::KeyCode::KEY_S || keyCode == EventKeyboard::KeyCode::KEY_DOWN_ARROW) {
-		playerPos.y -= _tileMap->getTileSize().height;
+		_playerPos.y -= _tileMap->getTileSize().height;
 	}
 	if (keyCode == EventKeyboard::KeyCode::KEY_D || keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW) {
-		playerPos.x += _tileMap->getTileSize().width;
+		_playerPos.x += _tileMap->getTileSize().width;
 		_player->runAction(actionTo2);
 	}
-	if (playerPos.x <= (_tileMap->getMapSize().width * _tileMap->getTileSize().width) &&
-	 playerPos.y <= (_tileMap->getMapSize().height * _tileMap->getTileSize().height) &&
-	 playerPos.y >= 0 &&
-	 playerPos.x >= 0) 
+	if (_playerPos.x <= (_tileMap->getMapSize().width * _tileMap->getTileSize().width) &&
+	 _playerPos.y <= (_tileMap->getMapSize().height * _tileMap->getTileSize().height) &&
+	 _playerPos.y >= 0 &&
+	 _playerPos.x >= 0) 
 	{
-	 this->setPlayerPosition(playerPos);
+	 _player->setPosition(_playerPos);
 	}
-	this->setViewPointCenter(_player->getPosition());
 }
 
 void Level1::startUI(){
@@ -73,8 +67,6 @@ void Level1::startUI(){
 	addChild(_bar);
 }
 
-
-// on "init" you need to initialize your instance
 bool Level1::init()
 {
     //////////////////////////////
@@ -93,13 +85,16 @@ bool Level1::init()
 	int x = playerShowUpPoint["x"].asInt();
 	int y = playerShowUpPoint["y"].asInt();
 	_player = Sprite::create("SirBrawnley.png");
-	_player->setPosition(x + _tileMap->getTileSize().width / 2, y + _tileMap->getTileSize().height / 2);
-	_player->setScale(0.05);
+	_playerPos = Point(x + _tileMap->getTileSize().width / 2, y + _tileMap->getTileSize().height / 2);
+	_player->setPosition(_playerPos.x,_playerPos.y);
+	_player->setScale(0.04);
 	addChild(_player);
 	setViewPointCenter(_player->getPosition());
 	auto listener = EventListenerKeyboard::create();
 	listener->onKeyPressed = CC_CALLBACK_2(Level1::onKeyPressed, this);
 	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	startUI();
+	//working on camera system so it updates with every frame and follows the player rather than jolting onto him.
+	//this->schedule(schedule_selector(Level1::camFollowPlayer));
     return true;
 }

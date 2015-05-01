@@ -5,23 +5,43 @@
 
 class Level1 : public cocos2d::Layer
 {
+	/*After messing around for 3 hours trying to make these static variables for the class,
+	I found out cocos2d just plain doesn't support static variables unless they are "POD",
+	here's a quote from some documentation:
+
+	"Objects with static storage duration, including global variables, static variables,
+	static class member variables, and function static variables, must be Plain Old Data (POD):
+	only ints, chars, floats, or pointers, or arrays/structs of POD."
+
+	So yeah, that's really annoying. */
+
+	/* Additionally, for some reason, the common coding style seems to be to declare your variables
+	as pointers and then use the -> operator to dereference them when you use them. The . operater
+	and -> operator are basically the same, all the -> operator does is convert a pointer to it's
+	object it was pointing at first. Aka object->method() == *object.method. The way cocos developers
+	use pointers makes me want to tear my hair out a bit, although I'm sure they have their reasons.
+	
+	Basically, if it has a * here, you have to use ->
+	if it doesn't, you use a . operator */
+
 	cocos2d::TMXTiledMap *_tileMap;
 	cocos2d::TMXLayer *_background;
 	cocos2d::Sprite *_player;
 	cocos2d::Sprite *_bar;
-public:
-    // there's no 'id' in cpp, so we recommend returning the class instance pointer
-    static cocos2d::Scene* createScene();
+	cocos2d::Point _playerPos;
 
-    // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
-    virtual bool init();
-
-    // implement the "static create()" method manually
-
+	//declare our functions
 	void setViewPointCenter(cocos2d::Point position);
 	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
 	void startUI();
 	void setPlayerPosition(cocos2d::Point position);
+	void camFollowPlayer(float dt);
+
+public:
+
+	//important cocos stuff
+	static cocos2d::Scene* createScene();
+    virtual bool init();
     CREATE_FUNC(Level1);
 };
 

@@ -1,7 +1,10 @@
 #include "AppDelegate.h"
+//include main menu header so we can call it's create method when we start with it's scene
 #include "MainMenu.h"
 
 USING_NS_CC;
+
+//Shouldn't really be messing with this file besides maybe to turn off display of stats.
 
 AppDelegate::AppDelegate() {
 

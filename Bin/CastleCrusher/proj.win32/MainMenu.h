@@ -5,17 +5,16 @@
 
 class MainMenu : public cocos2d::Layer
 {
-	// functions for click even handling
+	//declare private functions for click event handling
 	void onNewGame(cocos2d::Ref *sender);
 	void onOptions(cocos2d::Ref *sender);
 	void onExit(cocos2d::Ref *sender);
-public:
-	// there’s no ‘id’ in cpp, so we recommand to return the exactly class pointer
-	static cocos2d::Scene* createScene();
-	// Here’s a difference. Method ‘init’ in cocos2d-x returns bool, instead of returning ‘id’ in cocos2d-iphone
-	virtual bool init();
 
-	// implement the “static node()” method manually
+public:
+
+	//important cocos stuff
+	static cocos2d::Scene* createScene();
+	virtual bool init();
 	CREATE_FUNC(MainMenu);
 };
 
