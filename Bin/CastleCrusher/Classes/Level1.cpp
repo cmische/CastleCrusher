@@ -44,6 +44,23 @@ void Level1::camFollowPlayer(float dt)
 	this->setViewPoint(Point(camX, camY));
 }
 
+//move the snake through a square around the base position
+void Level1::enemyAI(float dt)
+{
+	switch (_snakePosIndex)
+	{
+	case 1: _snakePosX += _tileMap->getTileSize().width; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
+	case 2: _snakePosY += _tileMap->getTileSize().height; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
+	case 3: _snakePosY += _tileMap->getTileSize().height; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
+	case 4: _snakePosX -= _tileMap->getTileSize().width; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
+	case 5: _snakePosX -= _tileMap->getTileSize().width; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
+	case 6: _snakePosY -= _tileMap->getTileSize().height; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
+	case 7: _snakePosY -= _tileMap->getTileSize().height; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
+	case 8: _snakePosX += _tileMap->getTileSize().width; _snakePosIndex = 1; _snake->setPosition(_snakePosX, _snakePosY); break;
+	default: printf("invalid snake index"); break;
+	}
+}
+
 void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
 	int x = _playerPosX;
@@ -139,6 +156,11 @@ bool Level1::init()
 	int x = playerShowUpPoint["x"].asInt();
 	int y = playerShowUpPoint["y"].asInt();
 
+	//gets the base location for the snake enemy
+	auto enemyBasePoint = objects->getObject("enemyBase");
+	_snakeBasePosX = enemyBasePoint["x"].asInt();
+	_snakeBasePosY = enemyBasePoint["y"].asInt();
+
 	_player = Sprite::create("SirBrawnley.png");
 	//put player positions on spawnpoint
 	_playerPosX = (float)(x + _tileMap->getTileSize().width / 2);
@@ -148,6 +170,18 @@ bool Level1::init()
 	_player->setScale((float)0.032);
 	_player->setGlobalZOrder(-1);
 	addChild(_player);
+
+	//initializes the snake enemy
+	_snake = Sprite::create("Snake.png");
+	//put snake positions on spawnpoint
+	_snakePosX = (float)(_snakeBasePosX + _tileMap->getTileSize().width / 2);
+	_snakePosY = (float)(_snakeBasePosY + (_tileMap->getTileSize().height / 2) - _tileMap->getTileSize().height);
+	_snake->setPosition(_snakePosX, _snakePosY);
+	_snakePosIndex = 1;
+	//make our snake image the right size
+	_snake->setScale((float)0.032);
+	_snake->setGlobalZOrder(-1);
+	addChild(_snake);
 
 	//makes the camera start on the spawn instead of panning to it
 	camX = _playerPosX;
@@ -162,6 +196,8 @@ bool Level1::init()
 	startUI();
 	//this method runs camFollowPlayer on every frame update
 	schedule(schedule_selector(Level1::camFollowPlayer));
+	//calls the enemyAI to move the snake every half second.
+	schedule(schedule_selector(Level1::enemyAI), .5);
 
     return true;
 }

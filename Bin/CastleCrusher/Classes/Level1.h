@@ -28,9 +28,15 @@ class Level1 : public cocos2d::Layer
 	cocos2d::TMXTiledMap *_tileMap;
 	cocos2d::TMXLayer *_collide;
 	cocos2d::Sprite *_player;
+	cocos2d::Sprite *_snake;
 	cocos2d::Sprite *_bar;
 	float _playerPosX;
 	float _playerPosY;
+	float _snakePosX;
+	float _snakePosY;
+	float _snakeBasePosX;
+	float _snakeBasePosY;
+	int _snakePosIndex;
 
 	//declare our functions
 	void setViewPoint(cocos2d::Point position);
@@ -38,6 +44,7 @@ class Level1 : public cocos2d::Layer
 	void startUI();
 	void setPlayerPosition(cocos2d::Point position);
 	void camFollowPlayer(float dt);
+	void enemyAI(float dt);
 	cocos2d::Point tileCoordForPosition(cocos2d::Point position);
 
 public:
