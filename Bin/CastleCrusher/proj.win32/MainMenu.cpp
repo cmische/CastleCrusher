@@ -76,7 +76,10 @@ bool MainMenu::init()
 void MainMenu::onNewGame(cocos2d::Ref *sender)
 {
 	//runs when new game is selected on main menu
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(
+		"titlescreenping.wav");
 	auto scene = Level1::createScene();
+
 	//Director::getInstance()->replaceScene(TransitionFade::create(2, scene ));
 	Director::getInstance()->replaceScene(scene);
 }
@@ -84,11 +87,15 @@ void MainMenu::onNewGame(cocos2d::Ref *sender)
 void MainMenu::onOptions(cocos2d::Ref *sender)
 {
 	//runs when options is selected on main menu
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(
+		"titlescreenping.wav");
 	Director::getInstance()->end();
 }
 
 void MainMenu::onExit(cocos2d::Ref *sender)
 {
 	//runs when exit is selected on main menu
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(
+		"titlescreenping.wav");
 	Director::getInstance()->end();
 }

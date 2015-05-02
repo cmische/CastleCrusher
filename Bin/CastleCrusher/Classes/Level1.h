@@ -31,7 +31,7 @@ class Level1 : public cocos2d::Layer
 	cocos2d::Sprite *_player;
 	cocos2d::Sprite *_snake;
 	cocos2d::Sprite *_bar;
-	cocos2d::Sprite *_ogre;
+	cocos2d::Sprite *_ogre1;
 	float _playerPosX;
 	float _playerPosY;
 	float _snakePosX;
@@ -39,11 +39,11 @@ class Level1 : public cocos2d::Layer
 	float _snakeBasePosX;
 	float _snakeBasePosY;
 	int _snakePosIndex;
-	float _ogrePosX;
-	float _ogrePosY;
-	float _ogreBasePosX;
-	float _ogreBasePosY;
-	int _ogrePosIndex;
+	float _ogre1PosX;
+	float _ogre1PosY;
+	float _ogre1SpawnPosX;
+	float _ogre1SpawnPosY;
+	int _ogre1PosIndex;
 
 	//declare our functions
 	void setViewPoint(cocos2d::Point position);

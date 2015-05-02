@@ -2,6 +2,7 @@
 #define __MainMenu_SCENE_H__
 
 #include "cocos2d.h"
+#include "SimpleAudioEngine.h"
 
 class MainMenu : public cocos2d::Layer
 {
