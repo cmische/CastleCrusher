@@ -164,8 +164,6 @@ bool Level1::init()
 	_tileMap->getLayer("Tile Layer 2")->setGlobalZOrder(0);
 	_tileMap->getLayer("Tile Layer 3")->setGlobalZOrder(0);
 	_tileMap->getLayer("Tile Layer 4")->setGlobalZOrder(0);
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
-		"what is love.mp3", true);
 	
 
 
