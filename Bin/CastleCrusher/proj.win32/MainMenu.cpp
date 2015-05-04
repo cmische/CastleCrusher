@@ -23,8 +23,7 @@ bool MainMenu::init()
 		return false;
 	}
 
-	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(
-		"DungeonMusic.wav", true);
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("DungeonMusic.wav", true);
 
 	auto backgroundSprite = Sprite::create("background.png");
 	//grabs window size from the director for the scenes, the director is basically a static object that manages which scene we are on and transitions and stuff

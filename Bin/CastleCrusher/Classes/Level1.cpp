@@ -1,4 +1,5 @@
 #include "Level1.h"
+#include "Enemies.h"
 
 USING_NS_CC;
 
@@ -6,18 +7,17 @@ USING_NS_CC;
 int camX, camY;
 float camAdjustSpeed = (float)0.15;
 
-
 Scene* Level1::createScene()
 {
-    auto scene = Scene::create();   
-    auto layer = Level1::create();
+    Scene* scene = Scene::create();   
+    Layer* layer = Level1::create();
     scene->addChild(layer);
     return scene;
 }
 
 void Level1::setViewPoint(Point position) {
 	//winSize has to be in this function for some reason or the camera messes up, no idea why.
-	auto winSize = Director::getInstance()->getWinSize();
+	Size winSize = Director::getInstance()->getWinSize();
 	//make sure the camera center never updates with a center less than half the width of the window
     int x = MAX(position.x, winSize.width / 2);
 	//make sure the camera center never updates with a center less than half the height of the window
@@ -26,9 +26,9 @@ void Level1::setViewPoint(Point position) {
     x = MIN(x, (_tileMap->getMapSize().width * this->_tileMap->getTileSize().width) - winSize.width / 2);
 	//make sure the camera center never updates past map height minus half the height of the window
     y = MIN(y, (_tileMap->getMapSize().height * _tileMap->getTileSize().height) - winSize.height / 2);
-    auto actualPosition = Point(x, y);
-    auto centerOfView = Point(winSize.width / 2, winSize.height / 2);
-    auto viewPoint = centerOfView - actualPosition;
+    Vec2 actualPosition = Point(x, y);
+    Vec2 centerOfView = Point(winSize.width / 2, winSize.height / 2);
+    Vec2 viewPoint = centerOfView - actualPosition;
 	//get the difference from center of camera to where you want to go and go there
     this->setPosition(viewPoint);
 }
@@ -157,6 +157,9 @@ bool Level1::init()
     {
         return false;
     }
+	//create snake one liner
+	addChild(Snake::createSnake((float)200, (float)200)->Sprite);
+
 	_tileMap = TMXTiledMap::create("tileMap.tmx");
 	_collide = _tileMap->getLayer("collide");
 	_collide->setVisible(false);
