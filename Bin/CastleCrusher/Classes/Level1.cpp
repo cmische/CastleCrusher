@@ -160,6 +160,20 @@ bool Level1::init()
 	//FINALLY FUCKING GOT THIS WORKING http://discuss.cocos2d-x.org/t/scheduler-not-firing/21373
 	//create snake one liner
 	addChild(Snake::createSnake((float)200, (float)200));
+	addChild(Snake::createSnake((float)210, (float)250));
+	addChild(Snake::createSnake((float)220, (float)300));
+	addChild(Snake::createSnake((float)230, (float)350));
+	addChild(Snake::createSnake((float)240, (float)400));
+	addChild(Snake::createSnake((float)250, (float)450));
+	addChild(Snake::createSnake((float)260, (float)500));
+	addChild(Snake::createSnake((float)270, (float)550));
+	addChild(Snake::createSnake((float)280, (float)600));
+
+	addChild(Ogre::createOgre((float)300, (float)100));
+	addChild(Ogre::createOgre((float)400, (float)100));
+	addChild(Ogre::createOgre((float)500, (float)100));
+	addChild(Ogre::createOgre((float)600, (float)100));
+	addChild(Ogre::createOgre((float)700, (float)100));
 
 	_tileMap = TMXTiledMap::create("tileMap.tmx");
 	_collide = _tileMap->getLayer("collide");
