@@ -157,8 +157,9 @@ bool Level1::init()
     {
         return false;
     }
+	//FINALLY FUCKING GOT THIS WORKING http://discuss.cocos2d-x.org/t/scheduler-not-firing/21373
 	//create snake one liner
-	addChild(Snake::createSnake((float)200, (float)200)->Sprite);
+	addChild(Snake::createSnake((float)200, (float)200));
 
 	_tileMap = TMXTiledMap::create("tileMap.tmx");
 	_collide = _tileMap->getLayer("collide");
