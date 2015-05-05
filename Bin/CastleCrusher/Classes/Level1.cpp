@@ -128,7 +128,8 @@ void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 }
 
 
-void Level1::startUI(){
+void Level1::startUI()
+{
 	/*
 	int x = 32;
 	int y = 32;
@@ -139,6 +140,29 @@ void Level1::startUI(){
 	_bar->runAction(moveTo);
 	addChild(_bar);
 	*/
+}
+
+void Level1::scanEnemyLayer() 
+{
+	CCLOG(std::to_string(_tileMap->getMapSize().width).c_str());
+	CCLOG(std::to_string(_tileMap->getMapSize().height).c_str());
+	for( int i = 0; i < _tileMap->getMapSize().width; i++ )
+   {
+	   for( int j = 0; j < _tileMap->getMapSize().height; j++ )
+	   {
+		   Value properties = _tileMap->getPropertiesForGID(enemyLayer->tileGIDAt(Point(i, j)));
+			if(! properties.isNull()) {
+				ValueMap dict = properties.asValueMap();
+				if (dict.at("enemy").asString().compare("snake") == 0) {
+					addChild(Snake::createSnake( 16 + i * _tileMap->getTileSize().width, (_tileMap->getMapSize().height * _tileMap->getTileSize().height) - (j * _tileMap->getTileSize().height)));
+				}
+				if (dict.at("enemy").asString().compare("ogre") == 0) {
+					addChild(Ogre::createOgre( 16 + i * _tileMap->getTileSize().width, (_tileMap->getMapSize().height * _tileMap->getTileSize().height) - (j * _tileMap->getTileSize().height)));
+				}
+			}
+	   }
+   }
+	
 }
 
 
@@ -160,24 +184,18 @@ bool Level1::init()
 	//FINALLY FUCKING GOT THIS WORKING http://discuss.cocos2d-x.org/t/scheduler-not-firing/21373
 	//create snake one liner
 	addChild(Snake::createSnake((float)200, (float)200));
-	addChild(Snake::createSnake((float)210, (float)250));
-	addChild(Snake::createSnake((float)220, (float)300));
-	addChild(Snake::createSnake((float)230, (float)350));
-	addChild(Snake::createSnake((float)240, (float)400));
-	addChild(Snake::createSnake((float)250, (float)450));
-	addChild(Snake::createSnake((float)260, (float)500));
-	addChild(Snake::createSnake((float)270, (float)550));
-	addChild(Snake::createSnake((float)280, (float)600));
+
 
 	addChild(Ogre::createOgre((float)300, (float)100));
-	addChild(Ogre::createOgre((float)400, (float)100));
-	addChild(Ogre::createOgre((float)500, (float)100));
-	addChild(Ogre::createOgre((float)600, (float)100));
-	addChild(Ogre::createOgre((float)700, (float)100));
+
+	
 
 	_tileMap = TMXTiledMap::create("tileMap.tmx");
 	_collide = _tileMap->getLayer("collide");
+	enemyLayer = _tileMap->getLayer("enemies");
 	_collide->setVisible(false);
+	enemyLayer->setVisible(false);
+
 	_tileMap->getLayer("Background")->setGlobalZOrder(-2);
 	_tileMap->getLayer("Tile Layer 2")->setGlobalZOrder(0);
 	_tileMap->getLayer("Tile Layer 3")->setGlobalZOrder(0);
@@ -194,7 +212,7 @@ bool Level1::init()
 	int x = playerShowUpPoint["x"].asInt();
 	int y = playerShowUpPoint["y"].asInt();
 
-
+	scanEnemyLayer();
 
 	//gets the base location for the snake enemy
 	auto enemyBasePoint = objects->getObject("enemyBase");

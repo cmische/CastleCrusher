@@ -28,6 +28,7 @@ class Level1 : public cocos2d::Layer
 
 	cocos2d::TMXTiledMap *_tileMap;
 	cocos2d::TMXLayer *_collide;
+	cocos2d::TMXLayer *enemyLayer;
 	cocos2d::Sprite *_player;
 	cocos2d::Sprite *_snake;
 	cocos2d::Sprite *_bar;
@@ -47,6 +48,7 @@ class Level1 : public cocos2d::Layer
 
 	//declare our functions
 	void setViewPoint(cocos2d::Point position);
+	void scanEnemyLayer();
 	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
 	void startUI();
 	void setPlayerPosition(cocos2d::Point position);

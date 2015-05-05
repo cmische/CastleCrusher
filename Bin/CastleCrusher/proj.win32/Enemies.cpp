@@ -38,7 +38,7 @@ void Snake::shoot(float dt)
 void Snake::move(float dt)
 {
 	CCLOG("Moved");
-	PosX = PosX + 10;
+	PosX = PosX + 32;
 	setPosition(PosX, PosY);
 }
 
@@ -79,6 +79,6 @@ void Ogre::shoot(float dt)
 void Ogre::move(float dt)
 {
 	CCLOG("Moved");
-	PosY = PosY + 30;
+	PosY = PosY + 32;
 	setPosition(PosX, PosY);
 }
