@@ -13,6 +13,7 @@ public:
 	int scoreWorth;
 	float scale;
 	int HP;
+	int AI;
 	cocos2d::TMXTiledMap *_tileMap;
 	cocos2d::TMXLayer *_collide;
 
@@ -36,6 +37,7 @@ public:
 	int scoreWorth;
 	float scale;
 	int HP;
+	int AI;
 	cocos2d::TMXTiledMap *_tileMap;
 	cocos2d::TMXLayer *_collide;
 
@@ -48,5 +50,85 @@ public:
 	CREATE_FUNC(Ogre);
 
 };
+
+#define MOVE_NORTH \
+ccx = PosX; \
+ccy = PosY + 32; \
+if (checkCollide(cocos2d::Point(ccx, ccy),  _tileMap, _collide)) \
+{ \
+	PosX = ccx; \
+	PosY = ccy; \
+	setPosition(PosX, PosY); \
+}
+
+#define MOVE_EAST \
+ccx = PosX + 32; \
+ccy = PosY; \
+if (checkCollide(cocos2d::Point(ccx, ccy),  _tileMap, _collide)) \
+{ \
+	PosX = ccx; \
+	PosY = ccy; \
+	setPosition(PosX, PosY); \
+}
+
+#define MOVE_SOUTH \
+ccx = PosX; \
+ccy = PosY - 32; \
+if (checkCollide(cocos2d::Point(ccx, ccy),  _tileMap, _collide)) \
+{ \
+	PosX = ccx; \
+	PosY = ccy; \
+	setPosition(PosX, PosY); \
+}
+
+#define MOVE_WEST \
+ccx = PosX - 32; \
+ccy = PosY; \
+if (checkCollide(cocos2d::Point(ccx, ccy),  _tileMap, _collide)) \
+{ \
+	PosX = ccx; \
+	PosY = ccy; \
+	setPosition(PosX, PosY); \
+}
+
+#define MOVE_NE \
+ccx = PosX + 32; \
+ccy = PosY + 32; \
+if (checkCollide(cocos2d::Point(ccx, ccy),  _tileMap, _collide)) \
+{ \
+	PosX = ccx; \
+	PosY = ccy; \
+	setPosition(PosX, PosY); \
+}
+
+#define MOVE_SE \
+ccx = PosX + 32; \
+ccy = PosY - 32; \
+if (checkCollide(cocos2d::Point(ccx, ccy),  _tileMap, _collide)) \
+{ \
+	PosX = ccx; \
+	PosY = ccy; \
+	setPosition(PosX, PosY); \
+}
+
+#define MOVE_SW \
+ccx = PosX - 32; \
+ccy = PosY - 32; \
+if (checkCollide(cocos2d::Point(ccx, ccy),  _tileMap, _collide)) \
+{ \
+	PosX = ccx; \
+	PosY = ccy; \
+	setPosition(PosX, PosY); \
+}
+
+#define MOVE_NW \
+ccx = PosX - 32; \
+ccy = PosY + 32; \
+if (checkCollide(cocos2d::Point(ccx, ccy),  _tileMap, _collide)) \
+{ \
+	PosX = ccx; \
+	PosY = ccy; \
+	setPosition(PosX, PosY); \
+}
 
 #endif // __Enemies_H__

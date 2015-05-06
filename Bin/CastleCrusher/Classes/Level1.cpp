@@ -44,43 +44,6 @@ void Level1::camFollowPlayer(float dt)
 	this->setViewPoint(Point(camX, camY));
 }
 
-//move the snake through a square around the base position
-void Level1::enemyAI(float dt)
-{
-	auto actionTo1 = RotateTo::create(0, 0, 180);
-	auto actionTo2 = RotateTo::create(0, 0, 0);
-	switch (_snakePosIndex)
-	{
-	case 1: _snakePosX += _tileMap->getTileSize().width; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
-	case 2: _snakePosY += _tileMap->getTileSize().height; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
-	case 3: _snakePosY += _tileMap->getTileSize().height; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY);
-		_snake->runAction(actionTo1); break;
-	case 4: _snakePosX -= _tileMap->getTileSize().width; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
-	case 5: _snakePosX -= _tileMap->getTileSize().width; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
-	case 6: _snakePosY -= _tileMap->getTileSize().height; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); break;
-	case 7: _snakePosY -= _tileMap->getTileSize().height; _snakePosIndex++; _snake->setPosition(_snakePosX, _snakePosY); 
-		_snake->runAction(actionTo2); break;
-	case 8: _snakePosX += _tileMap->getTileSize().width; _snakePosIndex = 1; _snake->setPosition(_snakePosX, _snakePosY); break;
-	default: printf("invalid snake index"); break;
-	}
-	
-	switch (_ogre1PosIndex)
-	{
-		case 1: _ogre1PosX += _tileMap->getTileSize().width; _ogre1PosIndex++; _ogre1->setPosition(_ogre1PosX, _ogre1PosY); break;
-		case 2: _ogre1PosX += _tileMap->getTileSize().width; _ogre1PosIndex++; _ogre1->setPosition(_ogre1PosX, _ogre1PosY); break;
-		case 3: _ogre1PosX += _tileMap->getTileSize().width; _ogre1PosIndex++; _ogre1->setPosition(_ogre1PosX, _ogre1PosY); break;
-		case 4: _ogre1PosX += _tileMap->getTileSize().width; _ogre1PosIndex++; _ogre1->setPosition(_ogre1PosX, _ogre1PosY);
-			_ogre1->runAction(actionTo1); break;
-		case 5: _ogre1PosX -= _tileMap->getTileSize().width; _ogre1PosIndex++; _ogre1->setPosition(_ogre1PosX, _ogre1PosY); break;
-		case 6: _ogre1PosX -= _tileMap->getTileSize().width; _ogre1PosIndex++; _ogre1->setPosition(_ogre1PosX, _ogre1PosY); break;
-		case 7: _ogre1PosX -= _tileMap->getTileSize().width; _ogre1PosIndex++; _ogre1->setPosition(_ogre1PosX, _ogre1PosY); break;
-		case 8: _ogre1PosX -= _tileMap->getTileSize().width; _ogre1PosIndex = 1; _ogre1->setPosition(_ogre1PosX, _ogre1PosY);
-			_ogre1->runAction(actionTo2); break;
-		default: printf("invalid snake index"); break;
-	}
-
-}
-
 void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 {
 	int x = _playerPosX;
@@ -153,17 +116,16 @@ void Level1::scanEnemyLayer()
 			if(! properties.isNull()) {
 				ValueMap dict = properties.asValueMap();
 				if (dict.at("enemy").asString().compare("snake") == 0) {
-					addChild(Snake::createSnake( 16 + i * _tileMap->getTileSize().width, (_tileMap->getMapSize().height * _tileMap->getTileSize().height) - (j * _tileMap->getTileSize().height), _tileMap, _collide));
+					addChild(Snake::createSnake( 16 + ((float)i * _tileMap->getTileSize().width), (float)16 + (((float)_tileMap->getMapSize().height * _tileMap->getTileSize().height) - ((float)j * _tileMap->getTileSize().height)), _tileMap, _collide));
 				}
 				if (dict.at("enemy").asString().compare("ogre") == 0) {
-					addChild(Ogre::createOgre( 16 + i * _tileMap->getTileSize().width, (_tileMap->getMapSize().height * _tileMap->getTileSize().height) - (j * _tileMap->getTileSize().height), _tileMap, _collide));
+					addChild(Ogre::createOgre( 16 + ((float)i * _tileMap->getTileSize().width), (float)16 + (((float)_tileMap->getMapSize().height * _tileMap->getTileSize().height) - ((float)j * _tileMap->getTileSize().height)), _tileMap, _collide));
 				}
 			}
 	   }
    }
 	
 }
-
 
 Point Level1::tileCoordForPosition(Point position)
 {
@@ -229,34 +191,6 @@ bool Level1::init()
 	_player->setGlobalZOrder(-1);
 	addChild(_player);
 
-
-
-	//initializes the snake enemy
-	_snake = Sprite::create("Snake.png");
-	//put snake positions on spawnpoint
-	_snakePosX = (float)(_snakeBasePosX + _tileMap->getTileSize().width / 2);
-	_snakePosY = (float)(_snakeBasePosY + (_tileMap->getTileSize().height / 2) - _tileMap->getTileSize().height);
-	_snake->setPosition(_snakePosX, _snakePosY);
-	_snakePosIndex = 1;
-	
-	//make our snake image the right size
-	_snake->setScale((float)0.032);
-	_snake->setGlobalZOrder(-1);
-	addChild(_snake);
-
-	//initializes the ogre enemy
-	_ogre1 = Sprite::create("Ogre.png");
-	//put snake positions on spawnpoint
-	_ogre1PosX = (float)(_ogre1SpawnPosX + _tileMap->getTileSize().width / 2);
-	_ogre1PosY = (float)(_ogre1SpawnPosY + (_tileMap->getTileSize().height / 2) - _tileMap->getTileSize().height);
-	_ogre1->setPosition(_ogre1PosX, _ogre1PosY);
-	_ogre1PosIndex = 1;
-
-	//make our ogre image the right size
-	_ogre1->setScale((float)0.045);
-	_ogre1->setGlobalZOrder(-1);
-	addChild(_ogre1);
-
 	//makes the camera start on the spawn instead of panning to it
 	camX = _playerPosX;
 	camY = _playerPosY;
@@ -270,8 +204,6 @@ bool Level1::init()
 	startUI();
 	//this method runs camFollowPlayer on every frame update
 	schedule(schedule_selector(Level1::camFollowPlayer));
-	//calls the enemyAI to move the snake every half second.
-	schedule(schedule_selector(Level1::enemyAI), .5);
 
     return true;
 }

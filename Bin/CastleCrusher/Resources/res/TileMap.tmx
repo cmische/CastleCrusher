@@ -55,12 +55,12 @@
  </objectgroup>
  <layer name="collide" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztljEKgDAQBOMD/P93LSyUNO4tGw9lBtIE3GGKgGOcbPt1Okj56chAh7Zzv0+fzo6Ugw7dMd+vgI7nXTo8n+J3dunwfIrf2aXD8yl+Z5cOz6f4nV06PJ/id3bp8HyK39n9+3+7eqrf0FHveAs61ux0+yvvIPU+lHfT0ZLYSdHZAQAAAAAAAADf5gBicBRZ
+   eJzt2EEOhCAQRFE5gPe/rnFrWgIUtCX5P2Exiyl8ibOZch5H2eTcPT9np9yPY36rHavf568cSjjadms7q34vOOItHFo44i0cWjjiLRxaOOItHFo44q0Wh3JH61a2o3Z6v4Oj35EVjv0doyd6JmVnxDHz/kxD5Jj1DJmGN8cfw+EVDq9weIXDKxxe4fAKh1c4vMLhlfq/gtO5ABs1Hr0=
   </data>
  </layer>
  <layer name="enemies" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1jESgDAIRFFntPX+17WwczQmMWAW/qstYCGMywIAmtb97wrQIuO8enrOmBNOarNXqndkrZZ9K2V6tRnXrpyNFevMAcSidkfV6vW4ybWZlL5TyxWYAe9mTvwLP2NnfZV2cdQsou47u/qdR4ZR9y+zu73JOufavtXv1VufnvNXz7KXZ99R3rNlH1EyapW17wPn2gKA
+   eJzt1jESgDAIRNHMaOv9r2thqzGJAbPwX20BC2EsBQA0bcffFaBHxnmN9JwxJ1zUZq9W7yyWfStnuhvXrpyNFevMAcSidkfV6vW4ya2Z1L5TyxVYAe9mTfwLP2NnfdV2cdYsou47u/qdR4ZR9y+zu73JOufWvtXv1VufnvNXz3KUZ99R3rNlH1Ey6pW17xMl2AJw
   </data>
  </layer>
 </map>

@@ -32,7 +32,6 @@ Snake* Snake::createSnake(float x, float y, cocos2d::TMXTiledMap *map, cocos2d::
 	snake->PosY = y;
 	snake->_tileMap = map;
 	snake->_collide = layer;
-	CCLOG("Created Snake");
     return snake;
 }
 
@@ -41,13 +40,13 @@ bool Snake::init()
 	initWithFile("Snake.png");
 	alive = true;
 	HP = 100;
+	AI = 0;
 	scoreWorth = 10;
 	scale = (float)0.032;
 	setPosition(PosX, PosY);
 	setScale(scale);
 	setGlobalZOrder(-1);
 	schedule(CC_SCHEDULE_SELECTOR(Snake::move), (float).5);
-	CCLOG("Created Scheduler");
 	return true;
 }
 
@@ -61,15 +60,22 @@ void Snake::shoot(float dt)
 
 void Snake::move(float dt)
 {
-	CCLOG("Moved");
-	ccx = PosX + 32;
-	ccy = PosY;
-	if (checkCollide(cocos2d::Point(ccx, ccy),  _tileMap, _collide))
+	int x = PosX;
+	int y = PosY;
+	bool swapdirection = true;
+	if (swapdirection)
 	{
-		PosX = ccx;
-		PosY = ccy;
-		setPosition(PosX, PosY);
+		MOVE_NORTH
 	}
+	if (swapdirection == false)
+	{
+		MOVE_SOUTH
+	}
+	if ((PosX == x) && (PosY == y))
+	{
+		swapdirection = !swapdirection;
+	}
+	
 }
 
 //---------------------------- OGRE --------------------------------
@@ -81,7 +87,6 @@ Ogre* Ogre::createOgre(float x, float y, cocos2d::TMXTiledMap *map, cocos2d::TMX
 	snake->PosY = y;
 	snake->_tileMap = map;
 	snake->_collide = layer;
-	CCLOG("Created Ogre");
     return snake;
 }
 
@@ -90,13 +95,13 @@ bool Ogre::init()
 	initWithFile("Ogre.png");
 	alive = true;
 	HP = 100;
+	AI = 0;
 	scoreWorth = 10;
-	scale = (float)0.032;
+	scale = (float)0.030;
 	setPosition(PosX, PosY);
 	setScale(scale);
 	setGlobalZOrder(-1);
 	schedule(CC_SCHEDULE_SELECTOR(Snake::move), (float).5);
-	CCLOG("Created Scheduler");
 	return true;
 }
 
@@ -106,13 +111,14 @@ void Ogre::shoot(float dt)
 
 void Ogre::move(float dt)
 {
-	CCLOG("Moved");
-	ccx = PosX;
-	ccy = PosY + 32;
-	if (checkCollide(cocos2d::Point(ccx, ccy),  _tileMap, _collide))
+	switch (AI)
 	{
-		PosX = ccx;
-		PosY = ccy;
-		setPosition(PosX, PosY);
+	case 0: MOVE_WEST; AI++; break;
+	case 1: MOVE_WEST; AI++; break;
+	case 2: MOVE_WEST; AI++; break;
+	case 3: MOVE_EAST; AI++; break;
+	case 4: MOVE_EAST; AI++; break;
+	case 5: MOVE_EAST; AI=0; break;
+	default: CCLOG("invalid snake index"); break;
 	}
 }
