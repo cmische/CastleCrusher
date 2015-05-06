@@ -33,6 +33,7 @@ class Level1 : public cocos2d::Layer
 	cocos2d::Sprite *_snake;
 	cocos2d::Sprite *_bar;
 	cocos2d::Sprite *_ogre1;
+	cocos2d::Sprite *_arrow;
 	float _playerPosX;
 	float _playerPosY;
 	float _snakePosX;

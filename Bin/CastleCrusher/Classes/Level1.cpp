@@ -57,25 +57,47 @@ void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 		if ( _playerPosY + _tileMap->getTileSize().height <= _tileMap->getMapSize().height * _tileMap->getTileSize().height){
 			//if new position is within map bounds, change it to the new position
 			_playerPosY += _tileMap->getTileSize().height;
+			_arrow->setPosition(_player->getPosition());
 		}
 	}
 	if (keyCode == EventKeyboard::KeyCode::KEY_A || keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW) {
 		if (_playerPosX - _tileMap->getTileSize().width >= 0) {
 			_playerPosX -= _tileMap->getTileSize().width;
+			_arrow->setPosition(_player->getPosition());
 			_player->runAction(actionTo1);
+			_arrow->runAction(actionTo2);
 		}
 	}
 	if (keyCode == EventKeyboard::KeyCode::KEY_S || keyCode == EventKeyboard::KeyCode::KEY_DOWN_ARROW) {
 		if (_playerPosY - _tileMap->getTileSize().height >= 0) {
 		_playerPosY -= _tileMap->getTileSize().height;
+		_arrow->setPosition(_player->getPosition());
 		}
 	}
 	if (keyCode == EventKeyboard::KeyCode::KEY_D || keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW) {
 		if ( _playerPosX + _tileMap->getTileSize().width <= _tileMap->getMapSize().width * _tileMap->getTileSize().width) {
 			_playerPosX += _tileMap->getTileSize().width;
+			_arrow->setPosition(_player->getPosition());
 			_player->runAction(actionTo2);
+			_arrow->runAction(actionTo1);
 		}
 	}
+
+	//shooting projectile(still in progress)
+	if (keyCode == EventKeyboard::KeyCode::KEY_SPACE)
+	{
+		Vec2 offset = _player->getPosition();
+
+		offset.normalize();
+		auto shootAmount = offset * 1000;
+
+		auto realDest = shootAmount + _player->getPosition();
+
+		auto actionMove = MoveTo::create(1.0f, realDest);
+		auto actionRemove = RemoveSelf::create();
+		_arrow->runAction(Sequence::create(actionMove, actionRemove, nullptr));
+	}
+
 	//collide layer on tileMap has a transparent red tile, this checks to see if a players position will be on a red tile
 	Value properties = _tileMap->getPropertiesForGID(_collide->tileGIDAt(tileCoordForPosition(Point(_playerPosX, _playerPosY))));
 	if(! properties.isNull()) {
@@ -88,6 +110,7 @@ void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 	}
 	//actually move the player
 	 _player->setPosition(_playerPosX, _playerPosY);
+	 addChild(_arrow);
 }
 
 void Level1::startUI()
@@ -190,6 +213,14 @@ bool Level1::init()
 	_player->setScale((float)0.032);
 	_player->setGlobalZOrder(-1);
 	addChild(_player);
+
+	//Add arrow (or any projectile)
+	_arrow = Sprite::create("LeftArrow.png");
+	_arrow->setPosition(_player->getPosition());
+	//made it larger so I could see it better
+	_arrow->setScale((float)0.5);
+	_arrow->setGlobalZOrder(-1);
+	addChild(_arrow);
 
 	//makes the camera start on the spawn instead of panning to it
 	camX = _playerPosX;
