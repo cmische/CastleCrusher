@@ -131,42 +131,21 @@ void Ogre::move(float dt)
 
 //---------------------------- SWORD --------------------------------
 
-/*
-if (brawnleyHasSword)
-	{
-		Point click = e->getLocation();
-		int centerX = winSize.width / 2;
-		int centerY = winSize.height / 2;
-		int targetX = click.x - centerX;
-		int targetY = click.y - centerY;
-		targetX = _playerPosX + targetX;
-		targetY = _playerPosY - targetY;
-		Sprite* sword = Sprite::create("BoomerangSword.png");
-		sword->setScale((float)0.13);
-		sword->setPosition(_playerPosX, _playerPosY);
-		float time = (float)Point(_playerPosX, _playerPosY).distance(Point(targetX, targetY)) * 0.005;
-		float rate = (float)Point(_playerPosX, _playerPosY).distance(Point(targetX, targetY)) * 0.010;
-		auto moveTo = EaseOut::create(MoveTo::create(time, Point(targetX, targetY)), rate);
-		addChild(sword);
-		sword->runAction(moveTo);
-	}
-*/
 
-
-Sword* Sword::createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTiledMap *map, cocos2d::TMXLayer *layer, cocos2d::Point target)
+Sword* Sword::createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTiledMap *map, cocos2d::TMXLayer *layer, cocos2d::Point target, int *snakeSize, Snake snakes, int *ogreSize, Ogre ogres)
 {
     Sword* sword = Sword::create();
 	sword->PosX = *playerPosX;
 	sword->PosY = *playerPosY;
-	int xOffset = sword->target.x - sword->PosX;
-	int yOffset = sword->target.y - sword->PosX;
-	sword->target.x = sword->PosX + xOffset * 1.5;
-	sword->target.y = sword->PosY + yOffset * 1.5;
 	sword->playerPosXpointer = playerPosX;
 	sword->playerPosYpointer = playerPosY;
 	sword->_tileMap = map;
 	sword->_collide = layer;
 	sword->target = target;
+	int xOffset = sword->target.x - *(sword->playerPosXpointer);
+	int yOffset = sword->target.y - *(sword->playerPosYpointer);
+	sword->target.x = sword->PosX + (xOffset * 1.5);
+	sword->target.y = sword->PosY + (yOffset * 1.5);
     return sword;
 }
 
@@ -180,7 +159,6 @@ bool Sword::init()
 	setScale(scale);
 	setGlobalZOrder(-1);
 	swordSpeed = (float)0.05;
-	swordReturnSpeed = (float)0.02;
 	schedule(CC_SCHEDULE_SELECTOR(Sword::update));
 	
 	
@@ -193,8 +171,8 @@ void Sword::update(float dt)
 	//set it up this way so if _playerPosX == camX, nothing happens
 	if (endThrowReached)
 	{
-		PosX += (swordReturnSpeed * (*playerPosXpointer - PosX));
-		PosY += (swordReturnSpeed * (*playerPosYpointer - PosY));
+		PosX += (0.02 * (*playerPosXpointer - PosX));
+		PosY += (0.02 * (*playerPosYpointer - PosY));
 	}
 	else
 	{
@@ -209,14 +187,12 @@ void Sword::update(float dt)
 	{
 		endThrowReached = true;
 	}
-	if ((abs(PosX - *playerPosXpointer) < 300) && (abs(PosY - *playerPosYpointer) < 300) && (endThrowReached) )
+	if ((abs(PosX - *playerPosXpointer) < 50) && (abs(PosY - *playerPosYpointer) < 50) && (endThrowReached) )
 	{
-		if ((abs(PosX - *playerPosXpointer) < 30) && (abs(PosY - *playerPosYpointer) < 30) && (endThrowReached) )
-		{
-			removeFromParentAndCleanup(true);
-		}
-		swordReturnSpeed = 0.1
+		removeFromParentAndCleanup(true);
 	}
+
+
 }
 
 /*

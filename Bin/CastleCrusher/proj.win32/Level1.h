@@ -4,6 +4,7 @@
 
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
+#include "Enemies.h"
 
 class Level1 : public cocos2d::Layer
 {
@@ -35,6 +36,13 @@ class Level1 : public cocos2d::Layer
 	bool brawnleyHasSword;
 	float _playerPosX;
 	float _playerPosY;
+	float *playerPosXpointer;
+	float *playerPosYpointer;
+
+	Snake snakes[10000];
+	int snakeSize;
+	Ogre ogres[10000];
+	int ogreSize;
 
 	//declare our functions
 	void setViewPoint(cocos2d::Point position);

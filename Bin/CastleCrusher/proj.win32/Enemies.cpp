@@ -131,29 +131,8 @@ void Ogre::move(float dt)
 
 //---------------------------- SWORD --------------------------------
 
-/*
-if (brawnleyHasSword)
-	{
-		Point click = e->getLocation();
-		int centerX = winSize.width / 2;
-		int centerY = winSize.height / 2;
-		int targetX = click.x - centerX;
-		int targetY = click.y - centerY;
-		targetX = _playerPosX + targetX;
-		targetY = _playerPosY - targetY;
-		Sprite* sword = Sprite::create("BoomerangSword.png");
-		sword->setScale((float)0.13);
-		sword->setPosition(_playerPosX, _playerPosY);
-		float time = (float)Point(_playerPosX, _playerPosY).distance(Point(targetX, targetY)) * 0.005;
-		float rate = (float)Point(_playerPosX, _playerPosY).distance(Point(targetX, targetY)) * 0.010;
-		auto moveTo = EaseOut::create(MoveTo::create(time, Point(targetX, targetY)), rate);
-		addChild(sword);
-		sword->runAction(moveTo);
-	}
-*/
 
-
-Sword* Sword::createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTiledMap *map, cocos2d::TMXLayer *layer, cocos2d::Point target)
+Sword* Sword::createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTiledMap *map, cocos2d::TMXLayer *layer, cocos2d::Point target, int *snakeSize, Snake *(*snakes), int *ogreSize, Ogre *(*ogres))
 {
     Sword* sword = Sword::create();
 	sword->PosX = *playerPosX;
@@ -167,6 +146,11 @@ Sword* Sword::createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTile
 	int yOffset = sword->target.y - *(sword->playerPosYpointer);
 	sword->target.x = sword->PosX + (xOffset * 1.5);
 	sword->target.y = sword->PosY + (yOffset * 1.5);
+	*(sword->snakes) = *snakes;
+	*(sword->ogres) = *ogres;
+	sword->snakeSize = snakeSize;
+	sword->ogreSize = ogreSize;
+
     return sword;
 }
 
@@ -212,6 +196,19 @@ void Sword::update(float dt)
 	{
 		removeFromParentAndCleanup(true);
 	}
+	/*
+	for (int i = 0; i < *snakeSize; i++)
+	{
+		float x = snakes[i]->getPositionX();
+		float y = snakes[i]->getPositionY();
+		if ((abs(PosX - x) < 54) && (abs(PosY - y) < 54) )
+		{
+			snakes[i]->removeFromParentAndCleanup(true);
+		}
+	}
+	*/
+
+
 }
 
 /*

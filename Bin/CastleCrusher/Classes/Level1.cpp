@@ -7,6 +7,7 @@ USING_NS_CC;
 int camX, camY;
 float camAdjustSpeed = (float)0.15;
 
+
 Scene* Level1::createScene()
 {
     Scene* scene = Scene::create();   
@@ -156,10 +157,14 @@ void Level1::scanEnemyLayer()
 			if(! properties.isNull()) {
 				ValueMap dict = properties.asValueMap();
 				if (dict.at("enemy").asString().compare("snake") == 0) {
-					addChild(Snake::createSnake( 16 + ((float)i * _tileMap->getTileSize().width), (float)16 + (((float)_tileMap->getMapSize().height * _tileMap->getTileSize().height) - ((float)j * _tileMap->getTileSize().height)), _tileMap, _collide));
+					snakes[snakeSize] = Snake::createSnake( 16 + ((float)i * _tileMap->getTileSize().width), (float)16 + (((float)_tileMap->getMapSize().height * _tileMap->getTileSize().height) - ((float)j * _tileMap->getTileSize().height)), _tileMap, _collide);
+					addChild(snakes[snakeSize]);
+					snakeSize++;
 				}
 				if (dict.at("enemy").asString().compare("ogre") == 0) {
-					addChild(Ogre::createOgre( 16 + ((float)i * _tileMap->getTileSize().width), (float)16 + (((float)_tileMap->getMapSize().height * _tileMap->getTileSize().height) - ((float)j * _tileMap->getTileSize().height)), _tileMap, _collide));
+					ogres[ogreSize] = Ogre::createOgre( 16 + ((float)i * _tileMap->getTileSize().width), (float)16 + (((float)_tileMap->getMapSize().height * _tileMap->getTileSize().height) - ((float)j * _tileMap->getTileSize().height)), _tileMap, _collide);
+					addChild(ogres[ogreSize]);
+					ogreSize++;
 				}
 			}
 	   }
@@ -188,22 +193,7 @@ void Level1::onMouseDown(Event *event)
 		int targetY = click.y - centerY;
 		targetX = _playerPosX + targetX;
 		targetY = _playerPosY - targetY;
-		addChild(Sword::createSword(playerPosXpointer, playerPosYpointer, _tileMap, enemyLayer, Point(targetX, targetY)));
-		CCLOG("----Level1----");
-		CCLOG(std::to_string(*playerPosXpointer).c_str());
-		CCLOG(std::to_string(*playerPosYpointer).c_str());
-
-
-		/*
-		Sprite* sword = Sprite::create("BoomerangSword.png");
-		sword->setScale((float)0.13);
-		sword->setPosition(_playerPosX, _playerPosY);
-		float time = (float)Point(_playerPosX, _playerPosY).distance(Point(targetX, targetY)) * 0.005;
-		float rate = (float)Point(_playerPosX, _playerPosY).distance(Point(targetX, targetY)) * 0.010;
-		auto moveTo = EaseOut::create(MoveTo::create(time, Point(targetX, targetY)), rate);
-		addChild(sword);
-		sword->runAction(moveTo);
-		*/
+		addChild(Sword::createSword(playerPosXpointer, playerPosYpointer, _tileMap, enemyLayer, Point(targetX, targetY), &snakeSize, snakes, &ogreSize, ogres));
 	}
 
 }
@@ -241,6 +231,8 @@ bool Level1::init()
 	int x = playerShowUpPoint["x"].asInt();
 	int y = playerShowUpPoint["y"].asInt();
 
+	snakeSize=0;
+	ogreSize=0;
 	scanEnemyLayer();
 
 	_player = Sprite::create("SirBrawnleyWSword.png");

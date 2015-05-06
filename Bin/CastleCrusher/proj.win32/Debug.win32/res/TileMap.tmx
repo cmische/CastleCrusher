@@ -28,6 +28,9 @@
    </properties>
   </tile>
  </tileset>
+ <tileset firstgid="3333" name="Sheet_Outlined_Splatter" tilewidth="40" tileheight="40">
+  <image source="Sheet_Outlined_Splatter.png" width="520" height="280"/>
+ </tileset>
  <layer name="Background" width="50" height="50">
   <data encoding="base64" compression="zlib">
    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
@@ -35,7 +38,7 @@
  </layer>
  <layer name="Tile Layer 2" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztlz1OAlEYRWcBbMK4A5dAZUJnhdKjYI8mBKXDBFE7G1E7GnsaK39iY6WyAX42ANpziiF5mWQemXnjzGjuSU7yijff9+501/PsfBQ87xO/cFRYcznFWVEZs2+CU5zhloPBWWkyZ98Cv/EHiw4GZ6VJ1X/DKbYdc7TwxD/vZ5xjx8EeXmSc4xKvHHdnmaPh/8s7vHfc3ef7W3/eUco5Nn5p36ZyxEI57ChHPJTDjnLE44l9z/iCr467k5wVlf/aP/IyKyrBzuDSo7LsH2ZnCLODZ7iLe9jFc8v9VQfIW45r3MYa1rGEN38wxwDLxrsqnB9ylsPsPmEO8cB41yHnR8v9JDpZVMzuE+YbHhvvanJ+t9xPopMJIYQQQgghhBBCCCFEXJb4j4mP
+   eJztl7lOw0AURS2l9U+g/AGfQBWJjoqlZ+0BCZHQgcSWjoYlXZr0aVKxiIYqhB9gqeiA9JzClkaWPMgzYWzQPdKRphi/N9fdjSI7wziKHnGET/EPlwPOKsoz+17wFd9w2sPsrJB8sO8Tv3CMMx5mZ4VkOXlDC/c8c+xiMzmvlJxjzsNjPCk5xym28b3mPqvMHJvJv7zCjufuC76/TOZtBc4x9Uv76srhhHLYUQ43lMOOcrhxzb4bvMU7z92TnFWU/9o/qjKrKNnO4NOjyuwfZmfIcx8PcAEX8RCPLPfTDlC1HGfYwDVcx1k8/4M5ujhvvGuJc69iOczuk2cfV413bXAeWO6nnSwkZvfJ8x63jXftcH6w3J9EJxNCCCGEEEIIIYQQQghXvgF9C4p9
   </data>
  </layer>
  <layer name="Tile Layer 3" width="50" height="50">
@@ -61,6 +64,11 @@
  <layer name="enemies" width="50" height="50">
   <data encoding="base64" compression="zlib">
    eJzt1jESgDAIRNHMaOv9r2thqzGJAbPwX20BC2EsBQA0bcffFaBHxnmN9JwxJ1zUZq9W7yyWfStnuhvXrpyNFevMAcSidkfV6vW4ya2Z1L5TyxVYAe9mTfwLP2NnfdV2cdYsou47u/qdR4ZR9y+zu73JOufWvtXv1VufnvNXz3KUZ99R3rNlH1Ey6pW17xMl2AJw
+  </data>
+ </layer>
+ <layer name="levelAdvance" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztzqERAAAIBKA/u/uvazaaLDABCcBW/T0AAAAAAAAAAIC7ATOpABA=
   </data>
  </layer>
 </map>

@@ -69,7 +69,12 @@ public:
 	float swordSpeed;
 	float swordReturnSpeed;
 
-	static Sword* createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTiledMap *_tileMap, cocos2d::TMXLayer *enemyLayer, cocos2d::Point target);
+	Snake *(snakes[10000]);
+	int *snakeSize;
+	Ogre *(ogres[10000]);
+	int *ogreSize;
+
+	static Sword* createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTiledMap *_tileMap, cocos2d::TMXLayer *enemyLayer, cocos2d::Point target, int *snakeSize, Snake *(*snakes), int *ogreSize, Ogre *(*ogres));
 
 	virtual bool init();
 	virtual void update(float dt);
