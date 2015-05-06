@@ -35,7 +35,7 @@
  </layer>
  <layer name="Tile Layer 2" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztlz1OAlEYRWcBbMK4A5dAZUJnhdKjYI8mBKXDBFE7G1E7GnsaK39iY6WyAX42ANpziiF5mWQemXnjzGjuSU7yijff9+501/PsfBQ87xO/cFRYcznFWVEZs2+CU5zhloPBWWkyZ98Cv/EHiw4GZ6VJ1X/DKbYdc7TwxD/vZ5xjx8EeXmSc4xKvHHdnmaPh/8s7vHfc3ef7W3/eUco5Nn5p36ZyxEI57ChHPJTDjnLE44l9z/iCr467k5wVlf/aP/IyKyrBzuDSo7LsH2ZnCLODZ7iLe9jFc8v9VQfIW45r3MYa1rGEN38wxwDLxrsqnB9ylsPsPmEO8cB41yHnR8v9JDpZVMzuE+YbHhvvanJ+t9xPopMJIYQQQgghhBBCCCFEXJb4j4mP
+   eJztl7lOw0AURS2l9U+g/AGfQBWJjoqlZ+0BCZHQgcSWjoYlXZr0aVKxiIYqhB9gqeiA9JzClkaWPMgzYWzQPdKRphi/N9fdjSI7wziKHnGET/EPlwPOKsoz+17wFd9w2sPsrJB8sO8Tv3CMMx5mZ4VkOXlDC/c8c+xiMzmvlJxjzsNjPCk5xym28b3mPqvMHJvJv7zCjufuC76/TOZtBc4x9Uv76srhhHLYUQ43lMOOcrhxzb4bvMU7z92TnFWU/9o/qjKrKNnO4NOjyuwfZmfIcx8PcAEX8RCPLPfTDlC1HGfYwDVcx1k8/4M5ujhvvGuJc69iOczuk2cfV413bXAeWO6nnSwkZvfJ8x63jXftcH6w3J9EJxNCCCGEEEIIIYQQQghXvgF9C4p9
   </data>
  </layer>
  <layer name="Tile Layer 3" width="50" height="50">
@@ -61,6 +61,11 @@
  <layer name="enemies" width="50" height="50">
   <data encoding="base64" compression="zlib">
    eJzt1jESgDAIRNHMaOv9r2thqzGJAbPwX20BC2EsBQA0bcffFaBHxnmN9JwxJ1zUZq9W7yyWfStnuhvXrpyNFevMAcSidkfV6vW4ya2Z1L5TyxVYAe9mTfwLP2NnfdV2cdYsou47u/qdR4ZR9y+zu73JOufWvtXv1VufnvNXz3KUZ99R3rNlH1Ey6pW17xMl2AJw
+  </data>
+ </layer>
+ <layer name="levelAdvance" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztzqERAAAIBKA/u/uvazaaLDABCcBW/T0AAAAAAAAAAIC7ATOpABA=
   </data>
  </layer>
 </map>
