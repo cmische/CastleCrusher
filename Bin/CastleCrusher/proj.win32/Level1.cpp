@@ -6,8 +6,6 @@ USING_NS_CC;
 //declare some private variables for camFollowMethod so it doesn't have to create new ones 60 times a second
 int camX, camY;
 float camAdjustSpeed = (float)0.15;
-Sprite* pSwords [1024];
-int swordIndex;
 
 Scene* Level1::createScene()
 {
@@ -190,6 +188,10 @@ void Level1::onMouseDown(Event *event)
 		int targetY = click.y - centerY;
 		targetX = _playerPosX + targetX;
 		targetY = _playerPosY - targetY;
+
+		Sword* sword = swordcreate
+
+		/*
 		Sprite* sword = Sprite::create("BoomerangSword.png");
 		sword->setScale((float)0.13);
 		sword->setPosition(_playerPosX, _playerPosY);
@@ -198,6 +200,7 @@ void Level1::onMouseDown(Event *event)
 		auto moveTo = EaseOut::create(MoveTo::create(time, Point(targetX, targetY)), rate);
 		addChild(sword);
 		sword->runAction(moveTo);
+		*/
 	}
 
 }
@@ -225,8 +228,6 @@ bool Level1::init()
 	_tileMap->getLayer("Tile Layer 2")->setGlobalZOrder(0);
 	_tileMap->getLayer("Tile Layer 3")->setGlobalZOrder(0);
 	_tileMap->getLayer("Tile Layer 4")->setGlobalZOrder(0);
-	
-	swordIndex = 0;
 
 	//add tile map as a background
 	addChild(_tileMap);

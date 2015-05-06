@@ -52,6 +52,31 @@ public:
 
 };
 
+class Sword : public cocos2d::Sprite
+{
+public:
+    
+	float PosX;
+	float PosY;
+	float *playerPosXpointer;
+	float *playerPosYpointer;
+	bool alive;
+	bool endThrowReached;
+	float scale;
+	cocos2d::TMXTiledMap *_tileMap;
+	cocos2d::TMXLayer *_collide;
+	cocos2d::Point target;
+	float swordSpeed;
+
+	static Sword* createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTiledMap *_tileMap, cocos2d::TMXLayer *enemyLayer, cocos2d::Point target);
+
+	virtual bool init();
+	virtual void update(float dt);
+
+	CREATE_FUNC(Sword);
+
+};
+
 #define MOVE_NORTH \
 ccx = PosX; \
 ccy = PosY + 32; \

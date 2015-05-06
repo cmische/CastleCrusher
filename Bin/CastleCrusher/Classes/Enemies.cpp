@@ -128,3 +128,102 @@ void Ogre::move(float dt)
 	default: CCLOG("invalid snake index"); break;
 	}
 }
+
+//---------------------------- SWORD --------------------------------
+
+/*
+if (brawnleyHasSword)
+	{
+		Point click = e->getLocation();
+		int centerX = winSize.width / 2;
+		int centerY = winSize.height / 2;
+		int targetX = click.x - centerX;
+		int targetY = click.y - centerY;
+		targetX = _playerPosX + targetX;
+		targetY = _playerPosY - targetY;
+		Sprite* sword = Sprite::create("BoomerangSword.png");
+		sword->setScale((float)0.13);
+		sword->setPosition(_playerPosX, _playerPosY);
+		float time = (float)Point(_playerPosX, _playerPosY).distance(Point(targetX, targetY)) * 0.005;
+		float rate = (float)Point(_playerPosX, _playerPosY).distance(Point(targetX, targetY)) * 0.010;
+		auto moveTo = EaseOut::create(MoveTo::create(time, Point(targetX, targetY)), rate);
+		addChild(sword);
+		sword->runAction(moveTo);
+	}
+*/
+
+
+Sword* Sword::createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTiledMap *map, cocos2d::TMXLayer *layer, cocos2d::Point target)
+{
+    Sword* sword = Sword::create();
+	sword->PosX = *playerPosX;
+	sword->PosY = *playerPosY;
+	int xOffset = sword->target.x - sword->PosX;
+	int yOffset = sword->target.y - sword->PosX;
+	sword->target.x = sword->PosX + xOffset * 1.5;
+	sword->target.y = sword->PosY + yOffset * 1.5;
+	sword->playerPosXpointer = playerPosX;
+	sword->playerPosYpointer = playerPosY;
+	sword->_tileMap = map;
+	sword->_collide = layer;
+	sword->target = target;
+    return sword;
+}
+
+bool Sword::init()
+{
+	initWithFile("BoomerangSword.png");
+	alive = true;
+	endThrowReached = false;
+	scale = ((float)0.13);
+	setPosition(PosX, PosY);
+	setScale(scale);
+	setGlobalZOrder(-1);
+	swordSpeed = (float)0.05;
+	swordReturnSpeed = (float)0.02;
+	schedule(CC_SCHEDULE_SELECTOR(Sword::update));
+	
+	
+	return true;
+}
+
+void Sword::update(float dt)
+{
+	//This method is called with every frame update, it simply moves the camera 15% closer to the distance between where it is and the player with every frame
+	//set it up this way so if _playerPosX == camX, nothing happens
+	if (endThrowReached)
+	{
+		PosX += (swordReturnSpeed * (*playerPosXpointer - PosX));
+		PosY += (swordReturnSpeed * (*playerPosYpointer - PosY));
+	}
+	else
+	{
+		PosX += (swordSpeed * (target.x - PosX));
+		PosY += (swordSpeed * (target.y - PosY));
+	}
+
+	setRotation(getRotation() + 13);
+	setPosition(PosX, PosY);
+
+	if ((abs(PosX - target.x) < 3) && (abs(PosY - target.y) < 3) )
+	{
+		endThrowReached = true;
+	}
+	if ((abs(PosX - *playerPosXpointer) < 300) && (abs(PosY - *playerPosYpointer) < 300) && (endThrowReached) )
+	{
+		if ((abs(PosX - *playerPosXpointer) < 30) && (abs(PosY - *playerPosYpointer) < 30) && (endThrowReached) )
+		{
+			removeFromParentAndCleanup(true);
+		}
+		swordReturnSpeed = 0.1
+	}
+}
+
+/*
+	//This method is called with every frame update, it simply moves the camera 15% closer to the distance between where it is and the player with every frame
+	//set it up this way so if _playerPosX == camX, nothing happens
+	camX += (camAdjustSpeed * (_playerPosX - camX));
+	camY += (camAdjustSpeed * (_playerPosY - camY));
+	//Move the camera to the new position
+	this->setViewPoint(Point(camX, camY));
+*/

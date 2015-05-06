@@ -35,6 +35,8 @@ class Level1 : public cocos2d::Layer
 	bool brawnleyHasSword;
 	float _playerPosX;
 	float _playerPosY;
+	float *playerPosXpointer;
+	float *playerPosYpointer;
 
 	//declare our functions
 	void setViewPoint(cocos2d::Point position);
