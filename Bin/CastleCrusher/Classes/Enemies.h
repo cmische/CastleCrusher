@@ -13,8 +13,10 @@ public:
 	int scoreWorth;
 	float scale;
 	int HP;
+	cocos2d::TMXTiledMap *_tileMap;
+	cocos2d::TMXLayer *enemyLayer;
 
-	static Snake* createSnake(float PosX, float PosY);
+	static Snake* createSnake(float PosX, float PosY, cocos2d::TMXTiledMap *_tileMap, cocos2d::TMXLayer *enemyLayer);
 
 	virtual bool init();
     virtual void shoot(float dt);
@@ -34,8 +36,10 @@ public:
 	int scoreWorth;
 	float scale;
 	int HP;
+	cocos2d::TMXTiledMap *_tileMap;
+	cocos2d::TMXLayer *enemyLayer;
 
-	static Ogre* createOgre(float PosX, float PosY);
+	static Ogre* createOgre(float PosX, float PosY, cocos2d::TMXTiledMap *_tileMap, cocos2d::TMXLayer *enemyLayer);
 
 	virtual bool init();
     virtual void shoot(float dt);

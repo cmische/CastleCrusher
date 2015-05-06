@@ -117,14 +117,30 @@ void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 	Value properties = _tileMap->getPropertiesForGID(_collide->tileGIDAt(tileCoordForPosition(Point(_playerPosX, _playerPosY))));
 	if(! properties.isNull()) {
 		ValueMap dict = properties.asValueMap();
-		if (dict.at("collide").asString().compare("true") == 0) {
+		if (dict.at("collide").asString().compare("true") == 0) 
+		{
 			//if so, revert new position to same position it had when it started, nullifying any movement
 			_playerPosX = x;
 			_playerPosY = y;
 		}
 	}
 	//actually move the player
-	 _player->setPosition(_playerPosX, _playerPosY);
+	if (checkCollide(Point(_playerPosX, _playerPosY)))
+	{
+		_player->setPosition(_playerPosX, _playerPosY);
+	}
+}
+
+bool Level1::checkCollide(Point pos)
+{
+	Value properties = _tileMap->getPropertiesForGID(_collide->tileGIDAt(tileCoordForPosition(pos)));
+	if(! properties.isNull()) {
+		ValueMap dict = properties.asValueMap();
+		if (dict.at("collide").asString().compare("true") == 0) {
+			return false;
+		}
+	}
+	return true;
 }
 
 
@@ -144,10 +160,11 @@ void Level1::startUI()
 
 void Level1::scanEnemyLayer() 
 {
-
-	for( int i = 1; i < _tileMap->getMapSize().width; i++ )
+	CCLOG(std::to_string(_tileMap->getMapSize().width).c_str());
+	CCLOG(std::to_string(_tileMap->getMapSize().height).c_str());
+	for( int i = 0; i < _tileMap->getMapSize().width; i++ )
    {
-	   for( int j = 1; j < _tileMap->getMapSize().height; i++ )
+	   for( int j = 0; j < _tileMap->getMapSize().height; j++ )
 	   {
 		   Value properties = _tileMap->getPropertiesForGID(enemyLayer->tileGIDAt(Point(i, j)));
 			if(! properties.isNull()) {

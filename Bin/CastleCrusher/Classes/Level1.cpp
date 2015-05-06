@@ -127,7 +127,6 @@ void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 	 _player->setPosition(_playerPosX, _playerPosY);
 }
 
-
 void Level1::startUI()
 {
 	/*
@@ -154,10 +153,10 @@ void Level1::scanEnemyLayer()
 			if(! properties.isNull()) {
 				ValueMap dict = properties.asValueMap();
 				if (dict.at("enemy").asString().compare("snake") == 0) {
-					addChild(Snake::createSnake( 16 + i * _tileMap->getTileSize().width, (_tileMap->getMapSize().height * _tileMap->getTileSize().height) - (j * _tileMap->getTileSize().height)));
+					addChild(Snake::createSnake( 16 + i * _tileMap->getTileSize().width, (_tileMap->getMapSize().height * _tileMap->getTileSize().height) - (j * _tileMap->getTileSize().height), _tileMap, _collide));
 				}
 				if (dict.at("enemy").asString().compare("ogre") == 0) {
-					addChild(Ogre::createOgre( 16 + i * _tileMap->getTileSize().width, (_tileMap->getMapSize().height * _tileMap->getTileSize().height) - (j * _tileMap->getTileSize().height)));
+					addChild(Ogre::createOgre( 16 + i * _tileMap->getTileSize().width, (_tileMap->getMapSize().height * _tileMap->getTileSize().height) - (j * _tileMap->getTileSize().height), _tileMap, _collide));
 				}
 			}
 	   }
@@ -183,10 +182,6 @@ bool Level1::init()
     }
 	//FINALLY FUCKING GOT THIS WORKING http://discuss.cocos2d-x.org/t/scheduler-not-firing/21373
 	//create snake one liner
-	addChild(Snake::createSnake((float)200, (float)200));
-
-
-	addChild(Ogre::createOgre((float)300, (float)100));
 
 	
 
