@@ -176,6 +176,7 @@ Point Level1::tileCoordForPosition(Point position)
 
 void Level1::onMouseDown(Event *event)
 {
+	
 	if (brawnleyHasSword)
 	{
 		EventMouse* e = (EventMouse*)event;
@@ -192,7 +193,7 @@ void Level1::onMouseDown(Event *event)
 		CCLOG("----Level1----");
 		CCLOG(std::to_string(*playerPosXpointer).c_str());
 		CCLOG(std::to_string(*playerPosYpointer).c_str());
-
+	
 
 		/*
 		Sprite* sword = Sprite::create("BoomerangSword.png");
