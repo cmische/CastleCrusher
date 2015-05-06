@@ -1,10 +1,28 @@
-﻿Build started 5/6/2015 5:01:55 AM.
+﻿Build started 5/6/2015 5:15:14 AM.
      1>Project "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\CastleCrusher.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\audio\include" /I"C:\Cocos\frameworks\cocos2d-x-3.5\external" /I"C:\Cocos\frameworks\cocos2d-x-3.5\external\chipmunk\include\chipmunk" /I"C:\Cocos\frameworks\cocos2d-x-3.5\extensions" /I..\Classes /I.. /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\editor-support" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\platform" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\platform\desktop" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\external\glfw3\include\win32" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\external\win32-specific\gles\include\OGLES" /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _VARIADIC_MAX=10 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt Enemies.cpp
+         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\audio\include" /I"C:\Cocos\frameworks\cocos2d-x-3.5\external" /I"C:\Cocos\frameworks\cocos2d-x-3.5\external\chipmunk\include\chipmunk" /I"C:\Cocos\frameworks\cocos2d-x-3.5\extensions" /I..\Classes /I.. /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\editor-support" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\platform" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\platform\desktop" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\external\glfw3\include\win32" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\external\win32-specific\gles\include\OGLES" /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _VARIADIC_MAX=10 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\AppDelegate.cpp ..\Classes\Level1.cpp Enemies.cpp MainMenu.cpp main.cpp
+         AppDelegate.cpp
+         Level1.cpp
          Enemies.cpp
+         MainMenu.cpp
      1>c:\programdata\repositories\castlecrusher\bin\castlecrusher\proj.win32\enemies.cpp(18): warning C4996: 'cocos2d::TMXLayer::tileGIDAt': was declared deprecated
                  c:\cocos\frameworks\cocos2d-x-3.5\cocos\2d\cctmxlayer.h(122) : see declaration of 'cocos2d::TMXLayer::tileGIDAt'
+     1>c:\programdata\repositories\castlecrusher\bin\castlecrusher\classes\level1.cpp(64): warning C4996: 'cocos2d::TextureCache::getInstance': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.5\cocos\renderer\cctexturecache.h(68) : see declaration of 'cocos2d::TextureCache::getInstance'
+     1>c:\programdata\repositories\castlecrusher\bin\castlecrusher\classes\level1.cpp(76): warning C4996: 'cocos2d::TextureCache::getInstance': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.5\cocos\renderer\cctexturecache.h(68) : see declaration of 'cocos2d::TextureCache::getInstance'
+     1>c:\programdata\repositories\castlecrusher\bin\castlecrusher\classes\level1.cpp(87): warning C4996: 'cocos2d::TextureCache::getInstance': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.5\cocos\renderer\cctexturecache.h(68) : see declaration of 'cocos2d::TextureCache::getInstance'
+     1>c:\programdata\repositories\castlecrusher\bin\castlecrusher\classes\level1.cpp(98): warning C4996: 'cocos2d::TextureCache::getInstance': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.5\cocos\renderer\cctexturecache.h(68) : see declaration of 'cocos2d::TextureCache::getInstance'
+     1>c:\programdata\repositories\castlecrusher\bin\castlecrusher\classes\level1.cpp(121): warning C4996: 'cocos2d::TMXLayer::tileGIDAt': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.5\cocos\2d\cctmxlayer.h(122) : see declaration of 'cocos2d::TMXLayer::tileGIDAt'
+     1>c:\programdata\repositories\castlecrusher\bin\castlecrusher\classes\level1.cpp(157): warning C4996: 'cocos2d::TMXLayer::tileGIDAt': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.5\cocos\2d\cctmxlayer.h(122) : see declaration of 'cocos2d::TMXLayer::tileGIDAt'
+     1>c:\programdata\repositories\castlecrusher\bin\castlecrusher\classes\level1.cpp(185): warning C4996: 'cocos2d::TextureCache::getInstance': was declared deprecated
+                 c:\cocos\frameworks\cocos2d-x-3.5\cocos\renderer\cctexturecache.h(68) : see declaration of 'cocos2d::TextureCache::getInstance'
+         main.cpp
        PreLinkEvent:
          if not exist "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\" mkdir "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\"
          xcopy /Y /Q "C:\Cocos\frameworks\cocos2d-x-3.5\prebuilt\win32\*.*" "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\"
@@ -25,4 +43,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:12.66
+Time Elapsed 00:00:21.66

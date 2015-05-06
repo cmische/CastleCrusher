@@ -3,12 +3,14 @@
 
 int ccx;
 int ccy;
+std::default_random_engine generator;
+std::uniform_int_distribution<int> distribution(0,3);
 
 cocos2d::Point tileCoordForPosition(cocos2d::Point position, cocos2d::TMXTiledMap *map)
 {
     int x = position.x / map->getTileSize().width;
     int y = ((map->getMapSize().height * map->getTileSize().height) - position.y) / map->getTileSize().height;
-    return cocos2d::ccp(x, y);
+    return cocos2d::Vec2(x, y);
 }
 
 bool checkCollide(cocos2d::Point pos, cocos2d::TMXTiledMap *map, cocos2d::TMXLayer *layer)
@@ -39,6 +41,7 @@ bool Snake::init()
 {
 	initWithFile("Snake.png");
 	alive = true;
+	swapdirection = true;
 	HP = 100;
 	AI = 0;
 	scoreWorth = 10;
@@ -60,14 +63,22 @@ void Snake::shoot(float dt)
 
 void Snake::move(float dt)
 {
-	ccx = PosX + 32;
-	ccy = PosY;
-	if (checkCollide(cocos2d::Point(ccx, ccy),  _tileMap, _collide))
+	float x = PosX;
+	float y = PosY;
+	
+	if (swapdirection)
 	{
-		PosX = ccx;
-		PosY = ccy;
-		setPosition(PosX, PosY);
+		MOVE_NORTH
 	}
+	if (!swapdirection)
+	{
+		MOVE_SOUTH
+	}
+	if ((PosX == x) && (PosY == y))
+	{
+		swapdirection = !swapdirection;
+	}
+	
 }
 
 //---------------------------- OGRE --------------------------------
@@ -103,14 +114,17 @@ void Ogre::shoot(float dt)
 
 void Ogre::move(float dt)
 {
-	switch (AI)
+	int random = distribution(generator);
+	switch (random)
 	{
-	case 0: MOVE_WEST; AI++; break;
-	case 1: MOVE_WEST; AI++; break;
-	case 2: MOVE_WEST; AI++; break;
-	case 3: MOVE_EAST; AI++; break;
-	case 4: MOVE_EAST; AI++; break;
-	case 5: MOVE_EAST; AI=0; break;
+	case 0: MOVE_NORTH; AI++; break;
+	case 1: MOVE_EAST; AI++; break;
+	case 2: MOVE_SOUTH; AI++; break;
+	case 3: MOVE_WEST; AI++; break;
+	case 4: MOVE_NE; AI++; break;
+	case 5: MOVE_SE; AI++; break;
+	case 6: MOVE_SW; AI++; break;
+	case 7: MOVE_NW; AI=0; break;
 	default: CCLOG("invalid snake index"); break;
 	}
 }

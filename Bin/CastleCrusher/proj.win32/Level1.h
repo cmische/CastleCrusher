@@ -30,35 +30,25 @@ class Level1 : public cocos2d::Layer
 	cocos2d::TMXLayer *_collide;
 	cocos2d::TMXLayer *enemyLayer;
 	cocos2d::Sprite *_player;
-	cocos2d::Sprite *_snake;
-	cocos2d::Sprite *_bar;
-	cocos2d::Sprite *_ogre1;
+	cocos2d::Sprite *_arrow;
+	
+	bool brawnleyHasSword;
 	float _playerPosX;
 	float _playerPosY;
-	float _snakePosX;
-	float _snakePosY;
-	float _snakeBasePosX;
-	float _snakeBasePosY;
-	int _snakePosIndex;
-	float _ogre1PosX;
-	float _ogre1PosY;
-	float _ogre1SpawnPosX;
-	float _ogre1SpawnPosY;
-	int _ogre1PosIndex;
 
 	//declare our functions
 	void setViewPoint(cocos2d::Point position);
 	void scanEnemyLayer();
 	void onKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
+	void onMouseDown(cocos2d::Event *event);
 	void startUI();
 	void setPlayerPosition(cocos2d::Point position);
 	void camFollowPlayer(float dt);
 	void enemyAI(float dt);
+	void rotateSwords( float dt);
 	cocos2d::Point tileCoordForPosition(cocos2d::Point position);
 
 public:
-
-	bool checkCollide(cocos2d::Point pos);
 
 	//important cocos stuff
 	static cocos2d::Scene* createScene();
