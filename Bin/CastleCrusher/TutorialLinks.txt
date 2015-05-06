@@ -1,0 +1,19 @@
+Some random links, might have duplicated a few
+
+http://www.cocos2d-x.org/wiki/TileMap
+
+http://discuss.cocos2d-x.org/t/c-auto-keyword/16536/3
+
+http://www.cocos2d-x.org/reference/native-cpp/V3.0alpha0/d6/d48/classcocos2d_1_1_t_m_x_tiled_map.html#a62f6bfe93cb690a3c584d0d6b372bde5
+
+http://discuss.cocos2d-x.org/t/use-the-cocos2d-x-3-0-game-engine-write-a-tower-defender-game-part02/13750
+
+http://discuss.cocos2d-x.org/t/tutorial-series-use-the-cocos2d-x-3-0-game-engine-write-a-tile-map-game-part02/12991
+
+http://www.cocos2d-x.org/reference/native-cpp/V3.0alpha0/d8/d87/classcocos2d_1_1_event_keyboard.html#a7885f47644a0388f981f416fa20389b2
+
+http://www.cocos2d-x.org/wiki/EventDispatcher_Mechanism
+
+http://discuss.cocos2d-x.org/t/tutorial-series-use-the-cocos2d-x-3-0-game-engine-write-a-tile-map-game-part01/12938
+
+http://www.raywenderlich.com/39113/cocos2d-x-tile-map-tutorial-part-1
