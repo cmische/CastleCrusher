@@ -27,15 +27,6 @@
     <ClCompile Include="Enemies.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Level2.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Level3.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Boss.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -51,15 +42,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="Enemies.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="Level2.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="Level3.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="Boss.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

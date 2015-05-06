@@ -6,6 +6,8 @@ USING_NS_CC;
 //declare some private variables for camFollowMethod so it doesn't have to create new ones 60 times a second
 int camX, camY;
 float camAdjustSpeed = (float)0.15;
+Sprite* pSwords [1024];
+int swordIndex;
 
 Scene* Level1::createScene()
 {
@@ -57,33 +59,50 @@ void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 		if ( _playerPosY + _tileMap->getTileSize().height <= _tileMap->getMapSize().height * _tileMap->getTileSize().height){
 			//if new position is within map bounds, change it to the new position
 			_playerPosY += _tileMap->getTileSize().height;
-			_arrow->setPosition(_player->getPosition());
+			if (brawnleyHasSword)
+			{
+				_player->setTexture((CCTextureCache::getInstance()->addImage("SirBrawnleyWSwordUp.png")));
+			}
+			//_arrow->setPosition(_player->getPosition());
 		}
 	}
 	if (keyCode == EventKeyboard::KeyCode::KEY_A || keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW) {
 		if (_playerPosX - _tileMap->getTileSize().width >= 0) {
 			_playerPosX -= _tileMap->getTileSize().width;
-			_arrow->setPosition(_player->getPosition());
+			//_arrow->setPosition(_player->getPosition());
 			_player->runAction(actionTo1);
-			_arrow->runAction(actionTo2);
+			if (brawnleyHasSword)
+			{
+				_player->setTexture((CCTextureCache::getInstance()->addImage("SirBrawnleyWSword.png")));
+			}
+			//_arrow->runAction(actionTo2);
 		}
 	}
 	if (keyCode == EventKeyboard::KeyCode::KEY_S || keyCode == EventKeyboard::KeyCode::KEY_DOWN_ARROW) {
 		if (_playerPosY - _tileMap->getTileSize().height >= 0) {
 		_playerPosY -= _tileMap->getTileSize().height;
-		_arrow->setPosition(_player->getPosition());
+		//_arrow->setPosition(_player->getPosition());
+		if (brawnleyHasSword)
+			{
+				_player->setTexture((CCTextureCache::getInstance()->addImage("SirBrawnleyWSwordDown.png")));
+			}
 		}
 	}
 	if (keyCode == EventKeyboard::KeyCode::KEY_D || keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW) {
 		if ( _playerPosX + _tileMap->getTileSize().width <= _tileMap->getMapSize().width * _tileMap->getTileSize().width) {
 			_playerPosX += _tileMap->getTileSize().width;
-			_arrow->setPosition(_player->getPosition());
+			//_arrow->setPosition(_player->getPosition());
 			_player->runAction(actionTo2);
-			_arrow->runAction(actionTo1);
+			if (brawnleyHasSword)
+			{
+				_player->setTexture((CCTextureCache::getInstance()->addImage("SirBrawnleyWSword.png")));
+			}
+			//_arrow->runAction(actionTo1);
 		}
 	}
 
 	//shooting projectile(still in progress)
+	/*
 	if (keyCode == EventKeyboard::KeyCode::KEY_SPACE)
 	{
 		Vec2 offset = _player->getPosition();
@@ -97,7 +116,7 @@ void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 		auto actionRemove = RemoveSelf::create();
 		_arrow->runAction(Sequence::create(actionMove, actionRemove, nullptr));
 	}
-
+	*/
 	//collide layer on tileMap has a transparent red tile, this checks to see if a players position will be on a red tile
 	Value properties = _tileMap->getPropertiesForGID(_collide->tileGIDAt(tileCoordForPosition(Point(_playerPosX, _playerPosY))));
 	if(! properties.isNull()) {
@@ -110,7 +129,7 @@ void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
 	}
 	//actually move the player
 	 _player->setPosition(_playerPosX, _playerPosY);
-	 addChild(_arrow);
+	 //addChild(_arrow);
 }
 
 void Level1::startUI()
@@ -154,7 +173,33 @@ Point Level1::tileCoordForPosition(Point position)
 {
     int x = position.x / _tileMap->getTileSize().width;
     int y = ((_tileMap->getMapSize().height * _tileMap->getTileSize().height) - position.y) / _tileMap->getTileSize().height;
-    return ccp(x, y);
+    return Vec2(x, y);
+}
+
+void Level1::onMouseDown(Event *event)
+{
+	if (brawnleyHasSword)
+	{
+		EventMouse* e = (EventMouse*)event;
+		Size winSize = Director::getInstance()->getWinSize();
+		_player->setTexture((CCTextureCache::getInstance()->addImage("SirBrawnley.png")));
+		Point click = e->getLocation();
+		int centerX = winSize.width / 2;
+		int centerY = winSize.height / 2;
+		int targetX = click.x - centerX;
+		int targetY = click.y - centerY;
+		targetX = _playerPosX + targetX;
+		targetY = _playerPosY - targetY;
+		Sprite* sword = Sprite::create("BoomerangSword.png");
+		sword->setScale((float)0.13);
+		sword->setPosition(_playerPosX, _playerPosY);
+		float time = (float)Point(_playerPosX, _playerPosY).distance(Point(targetX, targetY)) * 0.005;
+		float rate = (float)Point(_playerPosX, _playerPosY).distance(Point(targetX, targetY)) * 0.010;
+		auto moveTo = EaseOut::create(MoveTo::create(time, Point(targetX, targetY)), rate);
+		addChild(sword);
+		sword->runAction(moveTo);
+	}
+
 }
 
 bool Level1::init()
@@ -181,7 +226,7 @@ bool Level1::init()
 	_tileMap->getLayer("Tile Layer 3")->setGlobalZOrder(0);
 	_tileMap->getLayer("Tile Layer 4")->setGlobalZOrder(0);
 	
-
+	swordIndex = 0;
 
 	//add tile map as a background
 	addChild(_tileMap);
@@ -194,17 +239,7 @@ bool Level1::init()
 
 	scanEnemyLayer();
 
-	//gets the base location for the snake enemy
-	auto enemyBasePoint = objects->getObject("enemyBase");
-	_snakeBasePosX = enemyBasePoint["x"].asInt();
-	_snakeBasePosY = enemyBasePoint["y"].asInt();
-
-	//gets the base location for the snake enemy
-	auto ogre1SpawnPoint = objects->getObject("ogre1Spawn");
-	_ogre1SpawnPosX = ogre1SpawnPoint["x"].asInt();
-	_ogre1SpawnPosY = ogre1SpawnPoint["y"].asInt();
-
-	_player = Sprite::create("SirBrawnley.png");
+	_player = Sprite::create("SirBrawnleyWSword.png");
 	//put player positions on spawnpoint
 	_playerPosX = (float)(x + _tileMap->getTileSize().width / 2);
 	_playerPosY = (float)(y + _tileMap->getTileSize().height / 2);
@@ -214,6 +249,7 @@ bool Level1::init()
 	_player->setGlobalZOrder(-1);
 	addChild(_player);
 
+	/*
 	//Add arrow (or any projectile)
 	_arrow = Sprite::create("LeftArrow.png");
 	_arrow->setPosition(_player->getPosition());
@@ -221,6 +257,7 @@ bool Level1::init()
 	_arrow->setScale((float)0.5);
 	_arrow->setGlobalZOrder(-1);
 	addChild(_arrow);
+	*/
 
 	//makes the camera start on the spawn instead of panning to it
 	camX = _playerPosX;
@@ -231,10 +268,15 @@ bool Level1::init()
 	auto listener = EventListenerKeyboard::create();
 	listener->onKeyPressed = CC_CALLBACK_2(Level1::onKeyPressed, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+
+	auto _mouseListener = EventListenerMouse::create();
+	_mouseListener->onMouseDown = CC_CALLBACK_1(Level1::onMouseDown, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(_mouseListener, this);
 	
 	startUI();
 	//this method runs camFollowPlayer on every frame update
 	schedule(schedule_selector(Level1::camFollowPlayer));
+	//schedule(schedule_selector(Level1::rotateSwords));
 
     return true;
 }

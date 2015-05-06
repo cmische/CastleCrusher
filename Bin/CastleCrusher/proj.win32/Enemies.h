@@ -16,6 +16,7 @@ public:
 	int AI;
 	cocos2d::TMXTiledMap *_tileMap;
 	cocos2d::TMXLayer *_collide;
+	bool swapdirection;
 
 	static Snake* createSnake(float PosX, float PosY, cocos2d::TMXTiledMap *_tileMap, cocos2d::TMXLayer *enemyLayer);
 

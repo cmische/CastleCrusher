@@ -1,53 +1,28 @@
-﻿Build started 5/5/2015 10:19:47 PM.
-     1>Project "C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\CastleCrusher.vcxproj" on node 2 (Build target(s)).
+﻿Build started 5/6/2015 5:01:55 AM.
+     1>Project "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\CastleCrusher.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\audio\include" /I"C:\Cocos\frameworks\cocos2d-x-3.5\external" /I"C:\Cocos\frameworks\cocos2d-x-3.5\external\chipmunk\include\chipmunk" /I"C:\Cocos\frameworks\cocos2d-x-3.5\extensions" /I..\Classes /I.. /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\editor-support" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\platform" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\platform\desktop" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\external\glfw3\include\win32" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\external\win32-specific\gles\include\OGLES" /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _VARIADIC_MAX=10 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc120.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\AppDelegate.cpp ..\Classes\Level1.cpp Enemies.cpp main.cpp MainMenu.cpp
-         AppDelegate.cpp
-         Level1.cpp
+         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\audio\include" /I"C:\Cocos\frameworks\cocos2d-x-3.5\external" /I"C:\Cocos\frameworks\cocos2d-x-3.5\external\chipmunk\include\chipmunk" /I"C:\Cocos\frameworks\cocos2d-x-3.5\extensions" /I..\Classes /I.. /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\editor-support" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\platform" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\platform\desktop" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\external\glfw3\include\win32" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\external\win32-specific\gles\include\OGLES" /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _VARIADIC_MAX=10 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt Enemies.cpp
          Enemies.cpp
-         main.cpp
-     1>c:\users\amber\documents\github\castlecrusher\bin\castlecrusher\classes\level1.cpp(80): warning C4996: 'cocos2d::TMXLayer::tileGIDAt': was declared deprecated
+     1>c:\programdata\repositories\castlecrusher\bin\castlecrusher\proj.win32\enemies.cpp(18): warning C4996: 'cocos2d::TMXLayer::tileGIDAt': was declared deprecated
                  c:\cocos\frameworks\cocos2d-x-3.5\cocos\2d\cctmxlayer.h(122) : see declaration of 'cocos2d::TMXLayer::tileGIDAt'
-     1>c:\users\amber\documents\github\castlecrusher\bin\castlecrusher\classes\level1.cpp(115): warning C4996: 'cocos2d::TMXLayer::tileGIDAt': was declared deprecated
-                 c:\cocos\frameworks\cocos2d-x-3.5\cocos\2d\cctmxlayer.h(122) : see declaration of 'cocos2d::TMXLayer::tileGIDAt'
-     1>c:\users\amber\documents\github\castlecrusher\bin\castlecrusher\classes\level1.cpp(134): warning C4996: 'cocos2d::ccp': was declared deprecated
-                 c:\cocos\frameworks\cocos2d-x-3.5\cocos\deprecated\ccdeprecated.h(49) : see declaration of 'cocos2d::ccp'
-     1>c:\users\amber\documents\github\castlecrusher\bin\castlecrusher\proj.win32\enemies.cpp(11): warning C4996: 'cocos2d::ccp': was declared deprecated
-                 c:\cocos\frameworks\cocos2d-x-3.5\cocos\deprecated\ccdeprecated.h(49) : see declaration of 'cocos2d::ccp'
-     1>c:\users\amber\documents\github\castlecrusher\bin\castlecrusher\proj.win32\enemies.cpp(16): warning C4996: 'cocos2d::TMXLayer::tileGIDAt': was declared deprecated
-                 c:\cocos\frameworks\cocos2d-x-3.5\cocos\2d\cctmxlayer.h(122) : see declaration of 'cocos2d::TMXLayer::tileGIDAt'
-         MainMenu.cpp
-     1>c:\users\amber\documents\github\castlecrusher\bin\castlecrusher\proj.win32\mainmenu.cpp(26): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
-                 c:\cocos\frameworks\cocos2d-x-3.5\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
-     1>c:\users\amber\documents\github\castlecrusher\bin\castlecrusher\proj.win32\mainmenu.cpp(82): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
-                 c:\cocos\frameworks\cocos2d-x-3.5\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
-     1>c:\users\amber\documents\github\castlecrusher\bin\castlecrusher\proj.win32\mainmenu.cpp(93): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
-                 c:\cocos\frameworks\cocos2d-x-3.5\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
-     1>c:\users\amber\documents\github\castlecrusher\bin\castlecrusher\proj.win32\mainmenu.cpp(101): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': was declared deprecated
-                 c:\cocos\frameworks\cocos2d-x-3.5\cocos\audio\include\simpleaudioengine.h(70) : see declaration of 'CocosDenshion::SimpleAudioEngine::sharedEngine'
-       ResourceCompile:
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug.win32\game.res" game.rc 
        PreLinkEvent:
-         if not exist "C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\" mkdir "C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\"
-         xcopy /Y /Q "C:\Cocos\frameworks\cocos2d-x-3.5\prebuilt\win32\*.*" "C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\"
-         xcopy "C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\..\Resources" "C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\" /D /E /I /F /Y
+         if not exist "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\" mkdir "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Cocos\frameworks\cocos2d-x-3.5\prebuilt\win32\*.*" "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\"
+         xcopy "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\..\Resources" "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\" /D /E /I /F /Y
          
          :VCEnd
          51 File(s) copied
-         C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\Resources\res\SpriteLayer\Thumbs.db -> C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\res\SpriteLayer\Thumbs.db
-         1 File(s) copied
+         0 File(s) copied
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\ /LIBPATH:C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\ opengl32.lib glew32.lib libzlib.lib libpng.lib libjpeg.lib libtiff.lib libwebp.lib libiconv.lib glfw3.lib freetype250.lib winmm.lib ws2_32.lib libchipmunk.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.lib" /MACHINE:X86 /SAFESEH Debug.win32\game.res
+         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\ /LIBPATH:C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\ opengl32.lib glew32.lib libzlib.lib libpng.lib libjpeg.lib libtiff.lib libwebp.lib libiconv.lib glfw3.lib freetype250.lib winmm.lib ws2_32.lib libchipmunk.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.lib" /MACHINE:X86 /SAFESEH Debug.win32\game.res
          Debug.win32\AppDelegate.obj
          Debug.win32\Level1.obj
          Debug.win32\Enemies.obj
          Debug.win32\main.obj
          Debug.win32\MainMenu.obj
-     1>AppDelegate.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
-            Creating library C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.lib and object C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.exp
-         CastleCrusher.vcxproj -> C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.exe
-     1>Done Building Project "C:\Users\Amber\Documents\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\CastleCrusher.vcxproj" (Build target(s)).
+         CastleCrusher.vcxproj -> C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.exe
+     1>Done Building Project "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\CastleCrusher.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:27.82
+Time Elapsed 00:00:12.66
