@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" nextobjectid="4">
+ <tileset firstgid="1" name="meta_tiles" tilewidth="32" tileheight="32">
+  <image source="meta_tiles.png" width="67" height="34"/>
+ </tileset>
+ <tileset firstgid="3" name="hcJ9k" tilewidth="32" tileheight="32">
+  <image source="hcJ9k.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="259" name="DungeonCrawl_ProjectUtumnoTileset" tilewidth="32" tileheight="32">
+  <image source="DungeonCrawl_ProjectUtumnoTileset.png" width="2048" height="1536"/>
+ </tileset>
+ <tileset firstgid="3331" name="tmw_desert_spacing" tilewidth="32" tileheight="32">
+  <image source="tmw_desert_spacing.png" width="265" height="199"/>
+ </tileset>
+ <tileset firstgid="3379" name="emeies texture" tilewidth="32" tileheight="32">
+  <image source="CastleCrusher/Bin/CastleCrusher/Resources/res/SpriteLayer/EnemiesTexture.png" width="64" height="32"/>
+ </tileset>
+ <layer name="Background" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1ssNwyAMBmAO7UbtBtm2G2S6iFvkEr8AYwO/5FMFyRcw9HyldC5cR7JNL0fO721TMzpK+yCiAz53NkdN4Hw9s4pDu85P87U+s6n9PNIBx3L6YnUHTFQHNXY7/sfe+z6y4x6to+a52HzU2Voa69EBf+f0wXZsh0cHJ7UOKtR5jL2L5ttZOiRraemQ7t/tsHHkff8p1Lexgxutg/vdnvocxruDm9YOrlPi4N5x2v6y6MdoDqwPIjmwRHNI3hdzWGR2B/eegPOMLujQ7k+qpN9HEwtHzXMsz4vt6FO9+tzaIY3WYZGa+yCCo6ZfSg6v94yn9bByjDpHIzmwM/cI5Bi9nl6KcvTKDA7p/w9u8jtfJtrrnA==
+  </data>
+ </layer>
+ <layer name="walls" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmV1uxCAMhCP15wjtCfq8UtqeoO3979CTdPMQCSGwZ2wMrnZH4iHaGPgSxjHstt22nq/tY1J7CuTYr+17UtuDOWapHOttG/uuVnHU68A7j5Ucrd+svqv7ezD2hbRPgOPL0PZGf5ct1usah0U9DlS1V5l8m4kDzdmtOTIcx/M61mTvuYzgsN7HckjP5T9xaLHZOLQ814sdyXH6vrV+tdjzWstzvdiRHKfvkTXjyVcWDim39t53Rg4tt7b6z8rB9n/n4MYprzNyaLVqy5csxw70X8e8gHMp54DWmx4Orf86hv0mMLn/jLVwIP2yunP4Oer6zSOJA/G9h0PySilkv1X6vp4D4nsvByJ0v9Wbw/vGPYdWjJQfPXW7pJoDOWv4qWKY/DiLI0ISR88H9TvVtJoD9b2mDBwjhPh6xpmgV5HngMiZYKseZM7mVgmtB9GzuZ4iz5wteagUwxF95szmIQ9HVmXmYP4zZdbkbA60HmTXJFvHR/keGVfKw5Y6PsL3lv2DxrFCx7i/j/I9DEdk3cKsCy9H5Hpi5uHliJRUW70C8Vk4vDk2C4dXEkeUryNqbokjytPMPoP9hv4B2/bEJw==
+  </data>
+ </layer>
+ <objectgroup name="spawnlayer">
+  <object id="2" x="32" y="352" width="31" height="31"/>
+ </objectgroup>
+ <layer name="collide" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztlckOwzAIRNP//+mqtypS7BkYMLEZyQdHYXli8XW1dtAn+URyZGlHDnWtVnIo86jGoZq9rDlX1uOJg7H3xFb68nJY9201Dut/TFx0Fiy5Mf8qOGb35ojhQHfq/a7kQOM+2XrjKv2NviO21rhozZh6V+Vg/TcHF+f/3hzP/r0cs5lUcCD+UZsRByMrB+KXVXM0x91+1vtoLqOYltlH72i+bB6KHojiYKSqh3o/ejkidAKHau4rcKhjRCmLI+NEc2TLuh+tb2WUPLkwtpk9Fs1RVc0Rr6ieXMGR4XfV3HvrU+WdQuKeyrHiLVFzRGonDs+OrcLh1Skcbzo/fQFO5QJQ
+  </data>
+ </layer>
+ <layer name="enemies" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt18ENgDAIBdAu4DS6/2wejYkHhcYqfe/OhcBvaQ1427bEa9dELfCcnZtTJqepRw5QSWaee++C3QJmJwf70k++7u6daZbd5MCZXDxE81EPgQh/svGy+T26/spf5srbWcMOwCcFiA==
+  </data>
+ </layer>
+ <layer name="levelAdvance" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7AF/6IxsIeLp1XQBAAAAAAAAACAi/kOAFAtMlAAAw==
+  </data>
+ </layer>
+</map>

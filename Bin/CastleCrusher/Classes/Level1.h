@@ -62,6 +62,7 @@ public:
 	static cocos2d::Scene* createScene();
     virtual bool init();
     CREATE_FUNC(Level1);
+
 };
 
 #endif // __Level1_SCENE_H__

@@ -1,0 +1,16 @@
+*.log
+*.log
+*.tlog
+*.tlog
+Bin/CastleCrusher/proj.win32/Debug.win32/CastleCrusher.tlog/link.command.1.tlog
+*.tlog
+*.log
+*.obj
+Bin/CastleCrusher/proj.win32/Debug.win32/MainMenu.obj
+*.pdb
+*.idb
+Bin/CastleCrusher/proj.win32/Debug.win32/vc110.pdb
+*.obj
+Bin/CastleCrusher/proj.win32/Debug.win32/MainMenu.obj
+*.log
+Bin/CastleCrusher/proj.win32/Debug.win32/CastleCrusher.Build.CppClean.log
