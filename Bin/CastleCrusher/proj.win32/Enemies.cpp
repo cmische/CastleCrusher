@@ -50,6 +50,7 @@ bool Snake::init()
 	setScale(scale);
 	setGlobalZOrder(-1);
 	schedule(CC_SCHEDULE_SELECTOR(Snake::move), (float).5);
+	this->setName("snake");
 	return true;
 }
 
@@ -105,6 +106,7 @@ bool Ogre::init()
 	setScale(scale);
 	setGlobalZOrder(-1);
 	schedule(CC_SCHEDULE_SELECTOR(Snake::move), (float).5);
+	this->setName("ogre");
 	return true;
 }
 
@@ -132,7 +134,7 @@ void Ogre::move(float dt)
 //---------------------------- SWORD --------------------------------
 
 
-Sword* Sword::createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTiledMap *map, cocos2d::TMXLayer *layer, cocos2d::Point target, int *snakeSize, Snake *(*snakes), int *ogreSize, Ogre *(*ogres))
+Sword* Sword::createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTiledMap *map, cocos2d::TMXLayer *layer, cocos2d::Point target)
 {
     Sword* sword = Sword::create();
 	sword->PosX = *playerPosX;
@@ -146,10 +148,7 @@ Sword* Sword::createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTile
 	int yOffset = sword->target.y - *(sword->playerPosYpointer);
 	sword->target.x = sword->PosX + (xOffset * 1.5);
 	sword->target.y = sword->PosY + (yOffset * 1.5);
-	*(sword->snakes) = *snakes;
-	*(sword->ogres) = *ogres;
-	sword->snakeSize = snakeSize;
-	sword->ogreSize = ogreSize;
+	
 
     return sword;
 }
@@ -165,8 +164,14 @@ bool Sword::init()
 	setGlobalZOrder(-1);
 	swordSpeed = (float)0.05;
 	schedule(CC_SCHEDULE_SELECTOR(Sword::update));
-	
-	
+	cocos2d::Vector<cocos2d::Node *> layers = cocos2d::Director::getInstance()->getRunningScene()->getChildren();
+	for (int i = 0; i < layers.size(); i++)
+	{
+		if (layers.at(i)->getName() == "level")
+		{
+			level1layer = layers.at(i);
+		}
+	}
 	return true;
 }
 
@@ -192,21 +197,25 @@ void Sword::update(float dt)
 	{
 		endThrowReached = true;
 	}
+	
+	for (int i = 0; i < level1layer->getChildrenCount(); i++)
+	{
+		if ( level1layer->getChildren().at(i)->getName() == "snake" || level1layer->getChildren().at(i)->getName() == "ogre")
+		{
+			float x = level1layer->getChildren().at(i)->getPositionX();
+			float y = level1layer->getChildren().at(i)->getPositionY();
+			if ((abs(PosX - x) < 54) && (abs(PosY - y) < 54) )
+			{
+				level1layer->getChildren().at(i)->removeFromParentAndCleanup(true);
+			}
+		}
+
+	}
+
 	if ((abs(PosX - *playerPosXpointer) < 50) && (abs(PosY - *playerPosYpointer) < 50) && (endThrowReached) )
 	{
 		removeFromParentAndCleanup(true);
 	}
-	/*
-	for (int i = 0; i < *snakeSize; i++)
-	{
-		float x = snakes[i]->getPositionX();
-		float y = snakes[i]->getPositionY();
-		if ((abs(PosX - x) < 54) && (abs(PosY - y) < 54) )
-		{
-			snakes[i]->removeFromParentAndCleanup(true);
-		}
-	}
-	*/
 
 
 }

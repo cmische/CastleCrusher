@@ -39,11 +39,6 @@ class Level1 : public cocos2d::Layer
 	float *playerPosXpointer;
 	float *playerPosYpointer;
 
-	Snake  *snakes[10000];
-	int snakeSize;
-	Ogre *ogres[10000];
-	int ogreSize;
-
 	//declare our functions
 	void setViewPoint(cocos2d::Point position);
 	void scanEnemyLayer();
@@ -57,6 +52,13 @@ class Level1 : public cocos2d::Layer
 	cocos2d::Point tileCoordForPosition(cocos2d::Point position);
 
 public:
+
+	
+	Snake  *snakes[10000];
+	int snakeSize;
+	Ogre *ogres[10000];
+	int ogreSize;
+
 
 	//important cocos stuff
 	static cocos2d::Scene* createScene();

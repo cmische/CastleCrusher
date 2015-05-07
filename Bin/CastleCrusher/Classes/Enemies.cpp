@@ -132,7 +132,7 @@ void Ogre::move(float dt)
 //---------------------------- SWORD --------------------------------
 
 
-Sword* Sword::createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTiledMap *map, cocos2d::TMXLayer *layer, cocos2d::Point target, int *snakeSize, Snake snakes, int *ogreSize, Ogre ogres)
+Sword* Sword::createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTiledMap *map, cocos2d::TMXLayer *layer, cocos2d::Point target)
 {
     Sword* sword = Sword::create();
 	sword->PosX = *playerPosX;
@@ -146,6 +146,8 @@ Sword* Sword::createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTile
 	int yOffset = sword->target.y - *(sword->playerPosYpointer);
 	sword->target.x = sword->PosX + (xOffset * 1.5);
 	sword->target.y = sword->PosY + (yOffset * 1.5);
+	
+
     return sword;
 }
 
@@ -191,6 +193,17 @@ void Sword::update(float dt)
 	{
 		removeFromParentAndCleanup(true);
 	}
+	/*
+	for (int i = 0; i < *snakeSize; i++)
+	{
+		float x = snakes[i]->getPositionX();
+		float y = snakes[i]->getPositionY();
+		if ((abs(PosX - x) < 54) && (abs(PosY - y) < 54) )
+		{
+			snakes[i]->removeFromParentAndCleanup(true);
+		}
+	}
+	*/
 
 
 }

@@ -12,6 +12,7 @@ Scene* Level1::createScene()
 {
     Scene* scene = Scene::create();   
     Layer* layer = Level1::create();
+	layer->setName("level");
     scene->addChild(layer);
     return scene;
 }
@@ -193,7 +194,7 @@ void Level1::onMouseDown(Event *event)
 		int targetY = click.y - centerY;
 		targetX = _playerPosX + targetX;
 		targetY = _playerPosY - targetY;
-		addChild(Sword::createSword(playerPosXpointer, playerPosYpointer, _tileMap, enemyLayer, Point(targetX, targetY), &snakeSize, snakes, &ogreSize, ogres));
+		addChild(Sword::createSword(playerPosXpointer, playerPosYpointer, _tileMap, enemyLayer, Point(targetX, targetY)));
 	}
 
 }
