@@ -1,5 +1,7 @@
 #include "Level1.h"
 #include "Enemies.h"
+#include "Win.h"
+#include "Lose.h"
 
 USING_NS_CC;
 
@@ -12,6 +14,7 @@ Scene* Level1::createScene()
 {
     Scene* scene = Scene::create();   
     Layer* layer = Level1::create();
+	layer->setName("level");
     scene->addChild(layer);
     return scene;
 }
@@ -43,6 +46,34 @@ void Level1::camFollowPlayer(float dt)
 	camY += (camAdjustSpeed * (_playerPosY - camY));
 	//Move the camera to the new position
 	this->setViewPoint(Point(camX, camY));
+	for (int i = 0; i < this->getChildrenCount(); i++)
+	{
+
+		if ( this->getChildren().at(i)->getName() == "snake" || this->getChildren().at(i)->getName() == "ogre")
+		{
+			float x = this->getChildren().at(i)->getPositionX();
+			float y = this->getChildren().at(i)->getPositionY();
+			if ((abs(_playerPosX - x) < 30) && (abs(_playerPosY - y) < 30) )
+			{
+				_player->setVisible(false);
+				auto scene = Lose::createScene();
+				Director::getInstance()->replaceScene(scene);
+			}
+		}
+
+	}
+
+	TMXObjectGroup *objects = _tileMap->getObjectGroup("win");
+	auto winPoint = objects->getObject("win");
+	float x = winPoint["x"].asFloat();
+	float y = winPoint["y"].asFloat();
+
+	if ((abs(_playerPosX - x) < 40) && (abs(_playerPosY - y) < 40) )
+			{
+				_player->setVisible(false);
+				auto scene = Win::createScene();
+				Director::getInstance()->replaceScene(scene);
+			}
 }
 
 void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
@@ -157,13 +188,13 @@ void Level1::scanEnemyLayer()
 			if(! properties.isNull()) {
 				ValueMap dict = properties.asValueMap();
 				if (dict.at("enemy").asString().compare("snake") == 0) {
-					snakes[snakeSize] = *Snake::createSnake( 16 + ((float)i * _tileMap->getTileSize().width), (float)16 + (((float)_tileMap->getMapSize().height * _tileMap->getTileSize().height) - ((float)j * _tileMap->getTileSize().height)), _tileMap, _collide);
-					addChild(&snakes[snakeSize]);
+					snakes[snakeSize] = Snake::createSnake( 16 + ((float)i * _tileMap->getTileSize().width), (float)16 + (((float)_tileMap->getMapSize().height * _tileMap->getTileSize().height) - ((float)j * _tileMap->getTileSize().height)), _tileMap, _collide);
+					addChild(snakes[snakeSize]);
 					snakeSize++;
 				}
 				if (dict.at("enemy").asString().compare("ogre") == 0) {
-					ogres[ogreSize] = *Ogre::createOgre( 16 + ((float)i * _tileMap->getTileSize().width), (float)16 + (((float)_tileMap->getMapSize().height * _tileMap->getTileSize().height) - ((float)j * _tileMap->getTileSize().height)), _tileMap, _collide);
-					addChild(&ogres[ogreSize]);
+					ogres[ogreSize] = Ogre::createOgre( 16 + ((float)i * _tileMap->getTileSize().width), (float)16 + (((float)_tileMap->getMapSize().height * _tileMap->getTileSize().height) - ((float)j * _tileMap->getTileSize().height)), _tileMap, _collide);
+					addChild(ogres[ogreSize]);
 					ogreSize++;
 				}
 			}
@@ -193,7 +224,7 @@ void Level1::onMouseDown(Event *event)
 		int targetY = click.y - centerY;
 		targetX = _playerPosX + targetX;
 		targetY = _playerPosY - targetY;
-		addChild(Sword::createSword(playerPosXpointer, playerPosYpointer, _tileMap, enemyLayer, Point(targetX, targetY), &snakeSize, snakes, &ogreSize, ogres));
+		addChild(Sword::createSword(playerPosXpointer, playerPosYpointer, _tileMap, enemyLayer, Point(targetX, targetY)));
 	}
 
 }
@@ -206,11 +237,12 @@ bool Level1::init()
     {
         return false;
     }
-	//FINALLY FUCKING GOT THIS WORKING http://discuss.cocos2d-x.org/t/scheduler-not-firing/21373
+	//FINALLY  http://discuss.cocos2d-x.org/t/scheduler-not-firing/21373
 	//create snake one liner
 
 	
 
+	_tileMap = TMXTiledMap::create("tileMap.tmx");
 	_tileMap = TMXTiledMap::create("tileMap.tmx");
 	_collide = _tileMap->getLayer("collide");
 	enemyLayer = _tileMap->getLayer("enemies");
@@ -231,9 +263,7 @@ bool Level1::init()
 	int x = playerShowUpPoint["x"].asInt();
 	int y = playerShowUpPoint["y"].asInt();
 
-	snakeSize=0;
-	ogreSize=0;
-	scanEnemyLayer();
+	
 
 	_player = Sprite::create("SirBrawnleyWSword.png");
 	//put player positions on spawnpoint
@@ -244,6 +274,7 @@ bool Level1::init()
 	_player->setScale((float)0.032);
 	_player->setGlobalZOrder(-1);
 	addChild(_player);
+	_player->setName("player");
 
 	/*
 	//Add arrow (or any projectile)
@@ -276,6 +307,10 @@ bool Level1::init()
 
 	playerPosXpointer = &_playerPosX;
 	playerPosYpointer = &_playerPosY;
+
+	snakeSize=0;
+	ogreSize=0;
+	scanEnemyLayer();
 
     return true;
 }

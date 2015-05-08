@@ -33,16 +33,11 @@ class Level1 : public cocos2d::Layer
 	cocos2d::Sprite *_player;
 	cocos2d::Sprite *_arrow;
 	
-	bool brawnleyHasSword;
+	
 	float _playerPosX;
 	float _playerPosY;
 	float *playerPosXpointer;
 	float *playerPosYpointer;
-
-	Snake snakes[10000];
-	int snakeSize;
-	Ogre ogres[10000];
-	int ogreSize;
 
 	//declare our functions
 	void setViewPoint(cocos2d::Point position);
@@ -58,10 +53,19 @@ class Level1 : public cocos2d::Layer
 
 public:
 
+	
+	Snake  *snakes[10000];
+	int snakeSize;
+	Ogre *ogres[10000];
+	int ogreSize;
+	bool brawnleyHasSword;
+
+
 	//important cocos stuff
 	static cocos2d::Scene* createScene();
     virtual bool init();
     CREATE_FUNC(Level1);
+
 };
 
 #endif // __Level1_SCENE_H__
