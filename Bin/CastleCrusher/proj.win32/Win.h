@@ -1,5 +1,5 @@
-#ifndef __MainMenu_SCENE_H__
-#define __MainMenu_SCENE_H__
+#ifndef __Win_H__
+#define __Win_H__
 
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
@@ -19,4 +19,4 @@ public:
 	CREATE_FUNC(Win);
 };
 
-#endif // __MainMenu_SCENE_H__
+#endif // __Win_H__

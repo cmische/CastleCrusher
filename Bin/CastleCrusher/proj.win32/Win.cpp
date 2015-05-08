@@ -23,7 +23,7 @@ bool Win::init()
 		return false;
 	}
 	//new image
-	auto backgroundSprite = Sprite::create("background.png");
+	auto backgroundSprite = Sprite::create("win.png");
 
 
 	//grabs window size from the director for the scenes, the director is basically a static object that manages which scene we are on and transitions and stuff
@@ -36,8 +36,7 @@ bool Win::init()
 	int buttonheight = winSize.height / 10;
 	//create button objects with callbacks to event methods
 
-	auto newGameItem = MenuItemImage::create("newGame.png","newGameSelected.png", CC_CALLBACK_1(Win:onNewGame, this));
-
+	auto newGameItem = MenuItemImage::create("newGame.png","newGameSelected.png", CC_CALLBACK_1(Win::onNewGame, this));
 	auto optionsItem = MenuItemImage::create("options.png","optionsSelected.png", CC_CALLBACK_1(Win::onOptions, this));
 	auto exitItem = MenuItemImage::create("exit.png","exitSelected.png", CC_CALLBACK_1(Win::onExit, this));
 	//Position the buttons with an x value and a y value of buttonheight

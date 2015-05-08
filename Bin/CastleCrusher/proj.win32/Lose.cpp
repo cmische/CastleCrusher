@@ -1,19 +1,19 @@
-#include "MainMenu.h"
+#include "Lose.h"
 //Include level1 header so we can call its scene create method and transition our scene to it
 #include "Level1.h"
 
 USING_NS_CC;
 
-Scene* MainMenu::createScene() 
+Scene* Lose::createScene() 
 {
 	//constructs our scene, constructs a layer, adds layer to the scene, returns the scene
 	auto scene = Scene::create();
-	auto layer = MainMenu::create();
+	auto layer = Lose::create();
 	scene->addChild(layer);
 	return scene;
 }
 
-bool MainMenu::init()
+bool Lose::init()
 {
 	//No idea what superinit does.
 	//////////////////////////////
@@ -22,10 +22,10 @@ bool MainMenu::init()
 	{
 		return false;
 	}
+	//new image
+	auto backgroundSprite = Sprite::create("lose.png");
 
-	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("DungeonMusic.wav", true);
 
-	auto backgroundSprite = Sprite::create("background.png");
 	//grabs window size from the director for the scenes, the director is basically a static object that manages which scene we are on and transitions and stuff
 	auto winSize = Director::getInstance()->getWinSize();
 	//Center the background
@@ -35,9 +35,10 @@ bool MainMenu::init()
 	//buttonheight variable for easier button placement adjusting
 	int buttonheight = winSize.height / 10;
 	//create button objects with callbacks to event methods
-	auto newGameItem = MenuItemImage::create("newGame.png","newGameSelected.png", CC_CALLBACK_1(MainMenu::onNewGame, this));
-	auto optionsItem = MenuItemImage::create("options.png","optionsSelected.png", CC_CALLBACK_1(MainMenu::onOptions, this));
-	auto exitItem = MenuItemImage::create("exit.png","exitSelected.png", CC_CALLBACK_1(MainMenu::onExit, this));
+
+	auto newGameItem = MenuItemImage::create("newGame.png","newGameSelected.png", CC_CALLBACK_1(Lose::onNewGame, this));
+	auto optionsItem = MenuItemImage::create("options.png","optionsSelected.png", CC_CALLBACK_1(Lose::onOptions, this));
+	auto exitItem = MenuItemImage::create("exit.png","exitSelected.png", CC_CALLBACK_1(Lose::onExit, this));
 	//Position the buttons with an x value and a y value of buttonheight
 	newGameItem->setPosition( winSize.width / 2, buttonheight);
 	optionsItem->setPosition( winSize.width / 10, buttonheight );
@@ -75,29 +76,26 @@ bool MainMenu::init()
 	return true;
 }
 
-void MainMenu::onNewGame(cocos2d::Ref *sender)
+void Lose::onNewGame(cocos2d::Ref *sender)
 {
 	//runs when new game is selected on main menu
-	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(
-		"titlescreenping.wav");
+	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("titlescreenping.wav");
 	auto scene = Level1::createScene();
 
 	Director::getInstance()->replaceScene(TransitionFade::create(2, scene ));
 	//1Director::getInstance()->replaceScene(scene);
 }
 
-void MainMenu::onOptions(cocos2d::Ref *sender)
+void Lose::onOptions(cocos2d::Ref *sender)
 {
 	//runs when options is selected on main menu
-	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(
-		"titlescreenping.wav");
+	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("titlescreenping.wav");
 	Director::getInstance()->end();
 }
 
-void MainMenu::onExit(cocos2d::Ref *sender)
+void Lose::onExit(cocos2d::Ref *sender)
 {
 	//runs when exit is selected on main menu
-	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(
-		"titlescreenping.wav");
+	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("titlescreenping.wav");
 	Director::getInstance()->end();
 }

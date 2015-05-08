@@ -1,10 +1,10 @@
-#ifndef __MainMenu_SCENE_H__
-#define __MainMenu_SCENE_H__
+#ifndef __Lose_H__
+#define __Lose_H__
 
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
 
-class MainMenu : public cocos2d::Layer
+class Lose : public cocos2d::Layer
 {
 	//declare private functions for click event handling
 	void onNewGame(cocos2d::Ref *sender);
@@ -16,7 +16,7 @@ public:
 	//important cocos stuff
 	static cocos2d::Scene* createScene();
 	virtual bool init();
-	CREATE_FUNC(MainMenu);
+	CREATE_FUNC(Lose);
 };
 
-#endif // __MainMenu_SCENE_H__
+#endif // __Lose_H__

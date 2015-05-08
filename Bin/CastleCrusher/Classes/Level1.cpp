@@ -1,5 +1,6 @@
 #include "Level1.h"
 #include "Enemies.h"
+#include "Win.h"
 
 USING_NS_CC;
 
@@ -54,6 +55,8 @@ void Level1::camFollowPlayer(float dt)
 			if ((abs(_playerPosX - x) < 30) && (abs(_playerPosY - y) < 30) )
 			{
 				_player->setVisible(false);
+				auto scene = Win::createScene();
+				Director::getInstance()->replaceScene(TransitionFade::create(2, scene ));
 			}
 		}
 
