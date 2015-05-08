@@ -44,6 +44,20 @@ void Level1::camFollowPlayer(float dt)
 	camY += (camAdjustSpeed * (_playerPosY - camY));
 	//Move the camera to the new position
 	this->setViewPoint(Point(camX, camY));
+	for (int i = 0; i < this->getChildrenCount(); i++)
+	{
+
+		if ( this->getChildren().at(i)->getName() == "snake" || this->getChildren().at(i)->getName() == "ogre")
+		{
+			float x = this->getChildren().at(i)->getPositionX();
+			float y = this->getChildren().at(i)->getPositionY();
+			if ((abs(_playerPosX - x) < 30) && (abs(_playerPosY - y) < 30) )
+			{
+				_player->setVisible(false);
+			}
+		}
+
+	}
 }
 
 void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
@@ -232,9 +246,7 @@ bool Level1::init()
 	int x = playerShowUpPoint["x"].asInt();
 	int y = playerShowUpPoint["y"].asInt();
 
-	snakeSize=0;
-	ogreSize=0;
-	scanEnemyLayer();
+	
 
 	_player = Sprite::create("SirBrawnleyWSword.png");
 	//put player positions on spawnpoint
@@ -245,6 +257,7 @@ bool Level1::init()
 	_player->setScale((float)0.032);
 	_player->setGlobalZOrder(-1);
 	addChild(_player);
+	_player->setName("player");
 
 	/*
 	//Add arrow (or any projectile)
@@ -277,6 +290,10 @@ bool Level1::init()
 
 	playerPosXpointer = &_playerPosX;
 	playerPosYpointer = &_playerPosY;
+
+	snakeSize=0;
+	ogreSize=0;
+	scanEnemyLayer();
 
     return true;
 }

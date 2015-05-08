@@ -24,6 +24,8 @@ public:
     virtual void shoot(float dt);
 	virtual void move(float dt);
 
+	Node *level1layer;
+
 	CREATE_FUNC(Snake);
 
 };
@@ -48,6 +50,8 @@ public:
     virtual void shoot(float dt);
 	virtual void move(float dt);
 
+	Node *level1layer;
+
 	CREATE_FUNC(Ogre);
 
 };
@@ -68,6 +72,8 @@ public:
 	cocos2d::Point target;
 	float swordSpeed;
 	float swordReturnSpeed;
+
+	int hits[10000];
 
 	Node *level1layer;
 

@@ -33,7 +33,7 @@ class Level1 : public cocos2d::Layer
 	cocos2d::Sprite *_player;
 	cocos2d::Sprite *_arrow;
 	
-	bool brawnleyHasSword;
+	
 	float _playerPosX;
 	float _playerPosY;
 	float *playerPosXpointer;
@@ -58,6 +58,7 @@ public:
 	int snakeSize;
 	Ogre *ogres[10000];
 	int ogreSize;
+	bool brawnleyHasSword;
 
 
 	//important cocos stuff

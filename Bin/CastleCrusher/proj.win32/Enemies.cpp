@@ -49,7 +49,7 @@ bool Snake::init()
 	setPosition(PosX, PosY);
 	setScale(scale);
 	setGlobalZOrder(-1);
-	schedule(CC_SCHEDULE_SELECTOR(Snake::move), (float).5);
+	schedule(CC_SCHEDULE_SELECTOR(Snake::move), (float)0.1);
 	this->setName("snake");
 	return true;
 }
@@ -105,7 +105,7 @@ bool Ogre::init()
 	setPosition(PosX, PosY);
 	setScale(scale);
 	setGlobalZOrder(-1);
-	schedule(CC_SCHEDULE_SELECTOR(Snake::move), (float).5);
+	schedule(CC_SCHEDULE_SELECTOR(Snake::move), (float)0.1);
 	this->setName("ogre");
 	return true;
 }
@@ -200,6 +200,7 @@ void Sword::update(float dt)
 	
 	for (int i = 0; i < level1layer->getChildrenCount(); i++)
 	{
+
 		if ( level1layer->getChildren().at(i)->getName() == "snake" || level1layer->getChildren().at(i)->getName() == "ogre")
 		{
 			float x = level1layer->getChildren().at(i)->getPositionX();

@@ -20,6 +20,8 @@ public:
 
 	static Snake* createSnake(float PosX, float PosY, cocos2d::TMXTiledMap *_tileMap, cocos2d::TMXLayer *enemyLayer);
 
+	Node *level1layer;
+
 	virtual bool init();
     virtual void shoot(float dt);
 	virtual void move(float dt);
@@ -43,6 +45,8 @@ public:
 	cocos2d::TMXLayer *_collide;
 
 	static Ogre* createOgre(float PosX, float PosY, cocos2d::TMXTiledMap *_tileMap, cocos2d::TMXLayer *enemyLayer);
+
+	Node *level1layer;
 
 	virtual bool init();
     virtual void shoot(float dt);
