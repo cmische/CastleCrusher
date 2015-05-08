@@ -23,7 +23,7 @@ bool Win::init()
 		return false;
 	}
 	//new image
-	auto backgroundSprite = Sprite::create("win.png");
+	auto backgroundSprite = Sprite::create("VictoryWindow.png");
 
 
 	//grabs window size from the director for the scenes, the director is basically a static object that manages which scene we are on and transitions and stuff
