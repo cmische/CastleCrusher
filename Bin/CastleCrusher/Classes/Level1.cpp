@@ -1,6 +1,7 @@
 #include "Level1.h"
 #include "Enemies.h"
 #include "Win.h"
+#include "Lose.h"
 
 USING_NS_CC;
 
@@ -55,12 +56,24 @@ void Level1::camFollowPlayer(float dt)
 			if ((abs(_playerPosX - x) < 30) && (abs(_playerPosY - y) < 30) )
 			{
 				_player->setVisible(false);
-				auto scene = Win::createScene();
-				Director::getInstance()->replaceScene(TransitionFade::create(2, scene ));
+				auto scene = Lose::createScene();
+				Director::getInstance()->replaceScene(scene);
 			}
 		}
 
 	}
+
+	TMXObjectGroup *objects = _tileMap->getObjectGroup("win");
+	auto winPoint = objects->getObject("win");
+	float x = winPoint["x"].asFloat();
+	float y = winPoint["y"].asFloat();
+
+	if ((abs(_playerPosX - x) < 40) && (abs(_playerPosY - y) < 40) )
+			{
+				_player->setVisible(false);
+				auto scene = Win::createScene();
+				Director::getInstance()->replaceScene(scene);
+			}
 }
 
 void Level1::onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event)
@@ -224,11 +237,12 @@ bool Level1::init()
     {
         return false;
     }
-	//FINALLY FUCKING GOT THIS WORKING http://discuss.cocos2d-x.org/t/scheduler-not-firing/21373
+	//FINALLY  http://discuss.cocos2d-x.org/t/scheduler-not-firing/21373
 	//create snake one liner
 
 	
 
+	_tileMap = TMXTiledMap::create("tileMap.tmx");
 	_tileMap = TMXTiledMap::create("tileMap.tmx");
 	_collide = _tileMap->getLayer("collide");
 	enemyLayer = _tileMap->getLayer("enemies");

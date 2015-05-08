@@ -1,33 +1,29 @@
-﻿Build started 5/7/2015 10:50:51 PM.
-     1>Project "D:\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\CastleCrusher.vcxproj" on node 2 (Build target(s)).
-     1>PreLinkEvent:
-         if not exist "D:\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\" mkdir "D:\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\"
-         xcopy /Y /Q "D:\Cocos\frameworks\cocos2d-x-3.5\prebuilt\win32\*.*" "D:\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\"
-         xcopy "D:\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\..\Resources" "D:\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\" /D /E /I /F /Y
+﻿Build started 5/8/2015 1:43:57 AM.
+     1>Project "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\CastleCrusher.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\audio\include" /I"C:\Cocos\frameworks\cocos2d-x-3.5\external" /I"C:\Cocos\frameworks\cocos2d-x-3.5\external\chipmunk\include\chipmunk" /I"C:\Cocos\frameworks\cocos2d-x-3.5\extensions" /I..\Classes /I.. /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\editor-support" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\platform" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\cocos\platform\desktop" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\external\glfw3\include\win32" /I"C:\Cocos\frameworks\cocos2d-x-3.5\cocos\2d\..\..\external\win32-specific\gles\include\OGLES" /ZI /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _WINDOWS /D _USE_MATH_DEFINES /D GL_GLEXT_PROTOTYPES /D CC_ENABLE_CHIPMUNK_INTEGRATION=1 /D COCOS2D_DEBUG=1 /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS /D _VARIADIC_MAX=10 /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt Controls.cpp
+         Controls.cpp
+       PreLinkEvent:
+         if not exist "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\" mkdir "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\"
+         xcopy /Y /Q "C:\Cocos\frameworks\cocos2d-x-3.5\prebuilt\win32\*.*" "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\"
+         xcopy "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\..\Resources" "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\" /D /E /I /F /Y
          
          :VCEnd
          51 File(s) copied
          0 File(s) copied
        Link:
-         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.exe" /INCREMENTAL /NOLOGO /LIBPATH:D:\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\ /LIBPATH:D:\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\ opengl32.lib glew32.lib libzlib.lib libpng.lib libjpeg.lib libtiff.lib libwebp.lib libiconv.lib glfw3.lib freetype250.lib winmm.lib ws2_32.lib libchipmunk.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.lib" /MACHINE:X86 /SAFESEH Debug.win32\game.res
+         D:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\ /LIBPATH:C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\ opengl32.lib glew32.lib libzlib.lib libpng.lib libjpeg.lib libtiff.lib libwebp.lib libiconv.lib glfw3.lib freetype250.lib winmm.lib ws2_32.lib libchipmunk.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.lib" /MACHINE:X86 /SAFESEH Debug.win32\game.res
          Debug.win32\AppDelegate.obj
          Debug.win32\Level1.obj
+         Debug.win32\Controls.obj
          Debug.win32\Enemies.obj
          Debug.win32\Lose.obj
          Debug.win32\main.obj
          Debug.win32\MainMenu.obj
          Debug.win32\Win.obj
-     1>AppDelegate.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
-     1>Lose.obj : error LNK2038: mismatch detected for '_MSC_VER': value '1800' doesn't match value '1700' in AppDelegate.obj
-     1>MainMenu.obj : error LNK2038: mismatch detected for '_MSC_VER': value '1800' doesn't match value '1700' in AppDelegate.obj
-     1>Win.obj : error LNK2038: mismatch detected for '_MSC_VER': value '1800' doesn't match value '1700' in AppDelegate.obj
-     1>msvcprt.lib(newaop_s.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1800' doesn't match value '1700' in AppDelegate.obj
-     1>msvcprt.lib(locale0_implib.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1800' doesn't match value '1700' in AppDelegate.obj
-     1>msvcprt.lib(nothrow.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1800' doesn't match value '1700' in AppDelegate.obj
-            Creating library D:\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.lib and object D:\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.exp
-     1>D:\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.exe : fatal error LNK1319: 6 mismatches detected
-     1>Done Building Project "D:\GitHub\CastleCrusher\Bin\CastleCrusher\proj.win32\CastleCrusher.vcxproj" (Build target(s)) -- FAILED.
+         CastleCrusher.vcxproj -> C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\Debug.win32\CastleCrusher.exe
+     1>Done Building Project "C:\ProgramData\Repositories\CastleCrusher\Bin\CastleCrusher\proj.win32\CastleCrusher.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:01.91
+Time Elapsed 00:00:13.97

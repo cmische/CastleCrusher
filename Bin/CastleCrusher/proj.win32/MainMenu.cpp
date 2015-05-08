@@ -1,6 +1,7 @@
 #include "MainMenu.h"
 //Include level1 header so we can call its scene create method and transition our scene to it
 #include "Level1.h"
+#include "Controls.h"
 
 USING_NS_CC;
 
@@ -89,7 +90,8 @@ void MainMenu::onOptions(cocos2d::Ref *sender)
 {
 	//runs when options is selected on main menu
 	CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("titlescreenping.wav");
-	Director::getInstance()->end();
+	auto scene = Controls::createScene();
+	Director::getInstance()->replaceScene(TransitionFade::create(2, scene ));
 }
 
 void MainMenu::onExit(cocos2d::Ref *sender)
