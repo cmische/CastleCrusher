@@ -20,11 +20,11 @@ public:
 
 	static Snake* createSnake(float PosX, float PosY, cocos2d::TMXTiledMap *_tileMap, cocos2d::TMXLayer *enemyLayer);
 
-	Node *level1layer;
-
 	virtual bool init();
     virtual void shoot(float dt);
 	virtual void move(float dt);
+
+	Node *level1layer;
 
 	CREATE_FUNC(Snake);
 
@@ -46,11 +46,11 @@ public:
 
 	static Ogre* createOgre(float PosX, float PosY, cocos2d::TMXTiledMap *_tileMap, cocos2d::TMXLayer *enemyLayer);
 
-	Node *level1layer;
-
 	virtual bool init();
     virtual void shoot(float dt);
 	virtual void move(float dt);
+
+	Node *level1layer;
 
 	CREATE_FUNC(Ogre);
 
@@ -72,6 +72,8 @@ public:
 	cocos2d::Point target;
 	float swordSpeed;
 	float swordReturnSpeed;
+
+	Node *level1layer;
 
 
 	static Sword* createSword(float *playerPosX, float *playerPosY, cocos2d::TMXTiledMap *_tileMap, cocos2d::TMXLayer *enemyLayer, cocos2d::Point target);
